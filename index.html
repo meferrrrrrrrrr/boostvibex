@@ -129,7 +129,8 @@
     const email = document.getElementById('email').value;
 
     // Apel către Google Apps Script folosind fetch pentru a trimite email-ul
-    fetch('https://tqo8zqyzbg.execute-api.eu-north-1.amazonaws.com/prod', {  // Înlocuiește cu URL-ul obținut
+    fetch('https://tqo8zqyzbg.execute-api.eu-north-1.amazonaws.com/prod/EmailFormSubmit'
+, {  // Înlocuiește cu URL-ul obținut
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
