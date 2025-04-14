@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoostVibeX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon-32x32.png" type="image/png">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="BoostVibeX Logo" class="logo">
+            <span class="logo-text">BoostVibeX</span>
+        </div>
+        <a href="#signup" class="btn-primary">Join Beta</a>
+    </nav>
+
+    <section class="hero">
+
+        <h1 class="main-title">
+            Alimentează-ți creativitatea.<br>Amplifică-ți vibe-ul.
+        </h1>
+
+        <p class="subtitle">Idei. Titluri. Trenduri. Tot ce ai nevoie pentru content viral.</p>
+    </section>
+    <a href="#signup" class="btn-boost">Boost me</a>
+
+
+    <section class="about">
+        <h2>Ce este BoostVibeX?</h2>
+        <p>BoostVibeX este AI-ul tău personal de brainstorming. Creează idei, titluri și trenduri în câteva secunde!</p>
+    </section>
+
+    <section class="features">
+        <h2>Ce poți face cu BoostVibeX?</h2>
+        <div class="features-content">
+            <div class="phone-container">
+                <img src="smartphone.png" alt="BoostVibeX Smartphone" class="phone-img animate-on-scroll">
+
+            </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>💡 Idei instant de content</h3>
+                </div>
+                <div class="feature-item">
+                    <h3>📝 Descrieri optimizate</h3>
+                </div>
+                <div class="feature-item">
+                    <h3>🎯 Titluri catchy</h3>
+                </div>
+                <div class="feature-item">
+                    <h3>📅 Trenduri zilnice + Calendar 7 zile</h3>
+                </div>
+            </div>
+    </section>
+
+    <section class="signup-form">
+        <h2>Înscriere pentru BoostVibeX</h2>
+        <form id="signupForm">
+            <label for="email">Email-ul tău:</label>
+            <input type="email" id="email" name="email" placeholder="Introdu email-ul" required>
+            <button type="submit">Înscrie-te</button>
+        </form>
+        <div id="confirmationMessage" style="display: none; margin-top: 20px; color: green; font-weight: bold;"></div>
+
+        <p id="confirmationMessage" style="display: none;">Mulțumim pentru înscriere! Vei primi un email de confirmare.
+        </p>
+    </section>
+
+
+    <section class="cta">
+        <h2>Amplifică-ți conținutul. Intră în vibe.</h2>
+        <a href="#signup" class="btn-secondary">Get Early Access</a>
+    </section>
+
+
+    <footer class="footer">
+        <p>© 2025 BoostVibeX · Home · About · Contact</p>
+    </footer>
+
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Scroll în jos => ascunde navbar
+                navbar.style.top = "-80px";
+            } else {
+                // Scroll în sus => arată navbar
+                navbar.style.top = "0";
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <script>
+        const phoneImg = document.querySelector('.phone-img');
+
+        window.addEventListener('scroll', () => {
+            const rect = phoneImg.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                phoneImg.classList.add('animate-on-scroll');
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('signupForm');
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+
+    // Apel către Google Apps Script folosind fetch pentru a trimite email-ul
+    fetch('https://script.google.com/macros/s/AKfycbzm8b1QZFT5Vs6YD7orkRHiWYdK5066eLg17vv5eE7avPUMrkUCaQH0fJyyXyZHqb7_RQ/exec', {  // Înlocuiește cu URL-ul obținut
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      alert("Mulțumim pentru înscriere!");
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Eroare la trimiterea email-ului.");
+    });
+  });
+});
+
+    </script>
+
+
+</body>
+
+</html>
