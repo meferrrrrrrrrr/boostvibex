@@ -20,15 +20,13 @@
     </nav>
 
     <section class="hero">
-
         <h1 class="main-title">
             Alimentează-ți creativitatea.<br>Amplifică-ți vibe-ul.
         </h1>
-
         <p class="subtitle">Idei. Titluri. Trenduri. Tot ce ai nevoie pentru content viral.</p>
     </section>
-    <a href="#signup" class="btn-boost">Boost me</a>
 
+    <a href="#signup" class="btn-boost">Boost me</a>
 
     <section class="about">
         <h2>Ce este BoostVibeX?</h2>
@@ -40,7 +38,6 @@
         <div class="features-content">
             <div class="phone-container">
                 <img src="smartphone.png" alt="BoostVibeX Smartphone" class="phone-img animate-on-scroll">
-
             </div>
             <div class="feature-list">
                 <div class="feature-item">
@@ -56,6 +53,7 @@
                     <h3>📅 Trenduri zilnice + Calendar 7 zile</h3>
                 </div>
             </div>
+        </div>
     </section>
 
     <section class="signup-form">
@@ -66,23 +64,19 @@
             <button type="submit">Înscrie-te</button>
         </form>
         <div id="confirmationMessage" style="display: none; margin-top: 20px; color: green; font-weight: bold;"></div>
-
-        <p id="confirmationMessage" style="display: none;">Mulțumim pentru înscriere! Vei primi un email de confirmare.
-        </p>
     </section>
-
 
     <section class="cta">
         <h2>Amplifică-ți conținutul. Intră în vibe.</h2>
         <a href="#signup" class="btn-secondary">Get Early Access</a>
     </section>
 
-
     <footer class="footer">
         <p>© 2025 BoostVibeX · Home · About · Contact</p>
     </footer>
 
     <script>
+        // Scroll Functionality for Navbar
         let lastScrollTop = 0;
         const navbar = document.querySelector('.navbar');
 
@@ -90,67 +84,50 @@
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
             if (scrollTop > lastScrollTop) {
-                // Scroll în jos => ascunde navbar
-                navbar.style.top = "-80px";
+                navbar.style.top = "-80px"; // Hide navbar on scroll down
             } else {
-                // Scroll în sus => arată navbar
-                navbar.style.top = "0";
+                navbar.style.top = "0"; // Show navbar on scroll up
             }
 
             lastScrollTop = scrollTop;
         });
 
-        window.addEventListener('scroll', function () {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    </script>
-
-    <script>
+        // Animating Phone Image on Scroll
         const phoneImg = document.querySelector('.phone-img');
-
         window.addEventListener('scroll', () => {
             const rect = phoneImg.getBoundingClientRect();
             if (rect.top < window.innerHeight - 100) {
                 phoneImg.classList.add('animate-on-scroll');
             }
         });
-    </script>
-    
 
-    <script>
+        // Handle Form Submit and Send Data to Lambda (API Gateway)
         document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('signupForm');
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const email = document.getElementById('email').value;
+            const form = document.getElementById('signupForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const email = document.getElementById('email').value;
 
-    // Apel către Google Apps Script folosind fetch pentru a trimite email-ul
-    fetch('https://tqo8zqyzbg.execute-api.eu-north-1.amazonaws.com/prod/EmailFormSubmit'
-, {  // Înlocuiește cu URL-ul obținut
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email: email })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      alert("Mulțumim pentru înscriere!");
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      alert("Eroare la trimiterea email-ului.");
-    });
-  });
-});
-
+                // API call to Lambda (API Gateway)
+                fetch('https://4b6hm6jaw7.execute-api.eu-north-1.amazonaws.com/prod/Emailformsubmit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    alert("Mulțumim pentru înscriere!");
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Eroare la trimiterea email-ului.");
+                });
+            });
+        });
     </script>
-
 
 </body>
 
