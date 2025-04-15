@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
 </head>
-
 <body>
-
     <nav class="navbar">
         <div class="logo-container">
-            <img src="logo.png" alt="BoostVibeX Logo" class="logo">
+            <img src="logo.png" alt="BoostVibeX Logo with Lightning Icon" class="logo" width="40" height="40">
             <span class="logo-text">BoostVibeX</span>
         </div>
         <a href="#signup" class="btn-primary">Join Beta</a>
@@ -37,7 +34,7 @@
         <h2>Ce poți face cu BoostVibeX?</h2>
         <div class="features-content">
             <div class="phone-container">
-                <img src="smartphone.png" alt="BoostVibeX Smartphone" class="phone-img animate-on-scroll">
+                <img src="smartphone.png" alt="BoostVibeX Smartphone" class="phone-img" width="200" height="400">
             </div>
             <div class="feature-list">
                 <div class="feature-item">
@@ -63,7 +60,7 @@
             <input type="email" id="email" name="email" placeholder="Introdu email-ul" required>
             <button type="submit">Înscrie-te</button>
         </form>
-        <div id="confirmationMessage" style="display: none; margin-top: 20px; color: green; font-weight: bold;"></div>
+        <div id="confirmationMessage" style="display: none;"></div>
     </section>
 
     <section class="cta">
@@ -72,7 +69,7 @@
     </section>
 
     <footer class="footer">
-        <p>© 2025 BoostVibeX · Home · About · Contact</p>
+        <p>© 2025 BoostVibeX · <a href="#home">Home</a> · <a href="#about">About</a> · <a href="#contact">Contact</a></p>
     </footer>
 
     <script>
@@ -83,27 +80,48 @@
         window.addEventListener('scroll', function () {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+            // Hide/show navbar on scroll
             if (scrollTop > lastScrollTop) {
                 navbar.style.top = "-80px"; // Hide navbar on scroll down
             } else {
                 navbar.style.top = "0"; // Show navbar on scroll up
             }
 
+            // Add scrolled class when scrolling down
+            if (scrollTop > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
             lastScrollTop = scrollTop;
         });
 
-        // Animating Phone Image on Scroll
-        const phoneImg = document.querySelector('.phone-img');
-        window.addEventListener('scroll', () => {
-            const rect = phoneImg.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                phoneImg.classList.add('animate-on-scroll');
-            }
+        // Animating Elements on Scroll
+        const animateElements = document.querySelectorAll('.phone-img, .feature-item');
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                } else {
+                    entry.target.classList.remove('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        animateElements.forEach(element => {
+            observer.observe(element);
         });
 
         // Handle Form Submit and Send Data to Lambda (API Gateway)
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('signupForm');
+            const confirmationMessage = document.getElementById('confirmationMessage');
+
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 const email = document.getElementById('email').value;
@@ -119,16 +137,18 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    alert("Mulțumim pentru înscriere!");
+                    confirmationMessage.style.display = 'block';
+                    confirmationMessage.textContent = "Mulțumim pentru înscriere!";
+                    form.reset();
                 })
                 .catch(error => {
                     console.error("Error:", error);
-                    alert("Eroare la trimiterea email-ului.");
+                    confirmationMessage.style.display = 'block';
+                    confirmationMessage.style.color = 'red';
+                    confirmationMessage.textContent = "Eroare la trimiterea email-ului.";
                 });
             });
         });
     </script>
-
 </body>
-
 </html>
