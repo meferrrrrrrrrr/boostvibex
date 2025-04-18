@@ -59,11 +59,10 @@
         <h2>Înscriere pentru BoostVibeX</h2>
         <form id="signupForm">
             <label for="email">Email-ul tău:</label>
-            <input type="email" id="email" name="email" placeholder="Introdu email-ul" required
-                aria-describedby="confirmationMessage">
+            <input type="email" id="email" name="email" placeholder="Introdu email-ul" required>
             <button type="submit">Înscrie-te</button>
         </form>
-        <div id="confirmationMessage" aria-live="polite" style="display: none;"></div>
+        <div id="confirmationMessage" style="display: none;"></div>
     </section>
 
     <section class="cta">
@@ -125,25 +124,13 @@
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('signupForm');
             const confirmationMessage = document.getElementById('confirmationMessage');
-            const emailInput = document.getElementById('email');
 
             form.addEventListener('submit', async function (event) {
                 event.preventDefault(); // Previne reîncărcarea paginii
-
-                const email = emailInput.value.trim(); // Elimină spațiile albe
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex pentru validare email
-
-                // Validare email pe client
-                if (!emailRegex.test(email)) {
-                    confirmationMessage.style.display = 'block';
-                    confirmationMessage.classList.add('error'); // Adaugă clasa 'error'
-                    confirmationMessage.textContent = "Te rugăm să introduci un email valid (ex. example@domain.com).";
-                    emailInput.focus(); // Focus pe input pentru corectare
-                    return;
-                }
+                const email = document.getElementById('email').value;
 
                 try {
-                    // API call to Lambda (API Gateway)
+                    // API call to Lambda (API Gateway) with the correct endpoint
                     const response = await fetch('https://l15k3kc259.execute-api.eu-north-1.amazonaws.com/prod/submit-email', {
                         method: 'POST',
                         headers: {
@@ -156,17 +143,19 @@
                     confirmationMessage.style.display = 'block';
 
                     if (response.ok) {
+                        // Succes
                         confirmationMessage.textContent = "Mulțumim pentru înscriere!";
                         confirmationMessage.style.color = 'green';
-                        confirmationMessage.classList.remove('error'); // Elimină clasa 'error'
-                        form.reset();
+                        form.reset(); // Resetează formularul
                     } else {
+                        // Eroare returnată de Lambda (ex. email-ul există deja)
                         confirmationMessage.textContent = `Eroare: ${data.message || 'Ceva nu a funcționat.'}`;
-                        confirmationMessage.classList.add('error'); // Adaugă clasa 'error'
+                        confirmationMessage.style.color = 'red';
                     }
                 } catch (error) {
+                    // Eroare de rețea sau altă problemă
                     confirmationMessage.style.display = 'block';
-                    confirmationMessage.classList.add('error'); // Adaugă clasa 'error'
+                    confirmationMessage.style.color = 'red';
                     confirmationMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
                 }
             });
