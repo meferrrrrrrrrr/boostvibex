@@ -336,11 +336,6 @@ body {
     border-radius: 5px;
     margin-bottom: 15px;
 }
-.signup-form input[type="email"]:focus {
-    outline: 2px solid #00f0ff;
-    border-color: #00f0ff;
-    box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-}
 
 .signup-form button {
     padding: 10px 20px;
@@ -359,14 +354,6 @@ body {
     color: green;
     margin-top: 20px;
     font-weight: bold;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 5px;
-}
-
-#confirmationMessage.error {
-    color: #d8000c;
-    background: rgba(255, 235, 235, 0.8);
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
