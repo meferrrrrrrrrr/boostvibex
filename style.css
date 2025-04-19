@@ -13,7 +13,7 @@
 html {
     width: 100%;
     overflow-x: hidden;
-    scroll-behavior: smooth; /* Adăugat pentru derulare lină */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -51,6 +51,7 @@ body {
 
 .hero {
     padding-top: 100px;
+    padding-bottom: 50px; /* Adăugat */
 }
 
 .logo-container {
@@ -116,6 +117,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     margin-top: 30px;
+    margin-bottom: 50px; /* Adăugat */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -147,6 +149,7 @@ body {
     padding: 80px 20px;
     max-width: 800px;
     margin: 0 auto;
+    margin-bottom: 50px; /* Adăugat */
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -169,7 +172,7 @@ body {
 
 /* Features Section */
 .features {
-    padding: 80px 20px;
+    padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.05);
@@ -183,14 +186,19 @@ body {
     color: white;
 }
 
-.phone-container {
+.features-content {
     display: flex;
+    align-items: center;
+    gap: 40px;
     justify-content: center;
-    margin: 40px 0;
+}
+
+.phone-container {
+    flex: 0 0 auto;
 }
 
 .phone-img {
-    max-width: 200px;
+    max-width: 180px;
     width: 100%;
     height: auto;
     border-radius: 20px;
@@ -205,7 +213,8 @@ body {
 .feature-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    gap: 20px;
+    flex: 1;
 }
 
 .feature-item {
@@ -402,6 +411,7 @@ body {
 
     .hero {
         padding-top: 120px;
+        padding-bottom: 40px;
     }
 
     .main-title {
@@ -417,11 +427,13 @@ body {
     .btn-boost {
         font-size: 18px;
         padding: 12px 25px;
+        margin-bottom: 40px;
     }
 
     .about {
         padding: 60px 20px;
         max-width: 90%;
+        margin-bottom: 40px;
     }
 
     .about h2 {
@@ -438,6 +450,10 @@ body {
 
     .features h2 {
         font-size: 32px;
+    }
+
+    .features-content {
+        flex-direction: column;
     }
 
     .phone-img {
@@ -480,6 +496,7 @@ body {
 
     .hero {
         padding-top: 150px;
+        padding-bottom: 30px;
     }
 
     .main-title {
@@ -495,6 +512,7 @@ body {
     .btn-boost {
         font-size: 16px;
         padding: 10px 20px;
+        margin-bottom: 30px;
     }
 
     .btn-primary,
@@ -512,6 +530,7 @@ body {
     .about {
         padding: 40px 15px;
         max-width: 90%;
+        margin-bottom: 30px;
     }
 
     .about h2 {
@@ -529,9 +548,7 @@ body {
     }
 
     .features-content {
-        display: flex;
         flex-direction: column;
-        align-items: center;
     }
 
     .features {
