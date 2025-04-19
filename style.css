@@ -229,7 +229,7 @@ body {
 
 /* CTA Section */
 .cta {
-    background: var(--gradient);
+    background: #7e57c2;
     padding: 40px 20px;
     text-align: center;
     color: white;
