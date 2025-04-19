@@ -10,16 +10,17 @@
     box-sizing: border-box;
 }
 
-html,
+html {
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth; /* Adăugat pentru derulare lină */
+}
+
 body {
     width: 100%;
     overflow-x: hidden;
-}
-
-/* Body general */
-body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #6e48aa, #9d50bb); /* Actualizat cu gradientul meu */
+    background: linear-gradient(135deg, #6e48aa, #9d50bb);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -115,12 +116,12 @@ body {
     font-weight: bold;
     text-decoration: none;
     margin-top: 30px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-boost:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(160, 32, 240, 0.6);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
 }
 
 /* Butonul general */
@@ -133,12 +134,12 @@ body {
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 10px #00f0ff;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 /* About Section */
@@ -146,6 +147,9 @@ body {
     padding: 80px 20px;
     max-width: 800px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .about h2 {
@@ -168,6 +172,9 @@ body {
     padding: 80px 20px;
     max-width: 1000px;
     margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .features h2 {
@@ -236,6 +243,7 @@ body {
     margin: 50px auto;
     max-width: 800px;
     border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cta h2 {
@@ -260,11 +268,12 @@ body {
     text-decoration: none;
     font-weight: bold;
     border: none;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background: var(--gradient);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
 }
 
 /* Footer */
@@ -304,7 +313,7 @@ body {
     text-decoration: underline;
 }
 
-/* Formular de înscriere - Stiluri actualizate cu design-ul meu */
+/* Formular de înscriere */
 .signup-form {
     max-width: 400px;
     margin: 20px auto;
@@ -355,17 +364,17 @@ body {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background-color: #34c759;
+    background: var(--gradient);
     color: #fff;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .signup-form button:hover {
     transform: scale(1.05);
-    background-color: #2db34a;
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
 }
 
 #confirmationMessage {
@@ -375,6 +384,90 @@ body {
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablete (între 600px și 1024px) */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 30px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+    }
+
+    .navbar .btn-primary {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .main-title {
+        font-size: 40px;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .btn-boost {
+        font-size: 18px;
+        padding: 12px 25px;
+    }
+
+    .about {
+        padding: 60px 20px;
+        max-width: 90%;
+    }
+
+    .about h2 {
+        font-size: 28px;
+    }
+
+    .about p {
+        font-size: 18px;
+    }
+
+    .features {
+        padding: 60px 20px;
+    }
+
+    .features h2 {
+        font-size: 32px;
+    }
+
+    .phone-img {
+        max-width: 180px;
+    }
+
+    .feature-list {
+        gap: 20px;
+    }
+
+    .feature-item h3 {
+        font-size: 18px;
+    }
+
+    .cta {
+        padding: 35px 20px;
+        max-width: 90%;
+    }
+
+    .cta h2 {
+        font-size: 32px;
+    }
+
+    .btn-secondary {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+/* Mobil (max-width: 600px) */
 @media (max-width: 600px) {
     .navbar {
         flex-wrap: nowrap;
@@ -400,29 +493,29 @@ body {
     }
 
     .btn-boost {
-        font-size: 18px;
-        padding: 12px 24px;
+        font-size: 16px;
+        padding: 10px 20px;
     }
 
     .btn-primary,
     .btn-secondary {
-        font-size: 16px;
-        padding: 12px 24px;
+        font-size: 14px;
+        padding: 10px 20px;
     }
 
     .features h2,
     .about h2,
     .cta h2 {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .about {
-        padding: 50px 20px;
+        padding: 40px 15px;
         max-width: 90%;
     }
 
     .about h2 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .about p {
@@ -441,12 +534,16 @@ body {
         align-items: center;
     }
 
+    .features {
+        padding: 40px 15px;
+    }
+
     .feature-list {
         margin-top: 20px;
         width: 100%;
         display: grid;
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
 
     .phone-img {
@@ -468,30 +565,30 @@ body {
     }
 
     .navbar .btn-primary {
-        padding: 8px 12px;
+        padding: 6px 10px;
         font-size: 14px;
     }
 
     .cta {
-        padding: 30px 15px;
+        padding: 25px 15px;
         max-width: 90%;
     }
 
     .cta h2 {
-        font-size: 28px;
-        margin-bottom: 20px;
+        font-size: 24px;
+        margin-bottom: 15px;
     }
 
     .btn-secondary {
-        padding: 12px 24px;
-        font-size: 16px;
+        padding: 10px 20px;
+        font-size: 14px;
     }
 
     .footer {
         font-size: 12px;
     }
 
-    /* Adăugat responsivitate pentru formular */
+    /* Formular */
     .signup-form {
         padding: 15px;
     }
