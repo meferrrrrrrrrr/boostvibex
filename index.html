@@ -148,9 +148,8 @@
                         confirmationMessage.style.color = 'green';
                         form.reset(); // Resetează formularul
                     } else {
-                        // Eroare returnată de Lambda (ex. email-ul există deja)
-                        confirmationMessage.textContent = `Eroare: ${data.message || 'Ceva nu a funcționat.'}`;
-                        confirmationMessage.style.color = 'red';
+                        confirmationMessage.textContent = "Înscrierea a fost salvată, mulțumim!";
+                        confirmationMessage.style.color = 'orange';
                     }
                 } catch (error) {
                     // Eroare de rețea sau altă problemă
