@@ -19,7 +19,7 @@ body {
 /* Body general */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #00f0ff, #9a00ff);
+    background: linear-gradient(135deg, #6e48aa, #9d50bb); /* Actualizat cu gradientul meu */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -304,58 +304,74 @@ body {
     text-decoration: underline;
 }
 
-/* Formular de inscriere */
+/* Formular de înscriere - Stiluri actualizate cu design-ul meu */
 .signup-form {
     max-width: 400px;
     margin: 20px auto;
     text-align: center;
     padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .signup-form h2 {
     margin-bottom: 20px;
-    color: #333;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .signup-form label {
     font-size: 16px;
-    color: black;
+    color: #fff;
     margin-bottom: 5px;
     display: block;
 }
 
 .signup-form input[type="email"] {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
     margin-bottom: 15px;
 }
 
+.signup-form input[type="email"]::placeholder {
+    color: #666;
+}
+
 .signup-form button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    background-color: #34c759;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease;
 }
 
 .signup-form button:hover {
-    background-color: #45a049;
     transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
+    background-color: #2db34a;
 }
 
 #confirmationMessage {
-    color: green;
-    margin-top: 20px;
-    font-weight: bold;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
@@ -473,5 +489,32 @@ body {
 
     .footer {
         font-size: 12px;
+    }
+
+    /* Adăugat responsivitate pentru formular */
+    .signup-form {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .signup-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .signup-form input[type="email"] {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .signup-form button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    #confirmationMessage {
+        font-size: 0.8rem;
     }
 }
