@@ -51,7 +51,7 @@ body {
 
 .hero {
     padding-top: 100px;
-    padding-bottom: 50px; /* Adăugat */
+    padding-bottom: 50px;
 }
 
 .logo-container {
@@ -117,7 +117,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     margin-top: 30px;
-    margin-bottom: 50px; /* Adăugat */
+    margin-bottom: 50px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -149,7 +149,7 @@ body {
     padding: 80px 20px;
     max-width: 800px;
     margin: 0 auto;
-    margin-bottom: 50px; /* Adăugat */
+    margin-bottom: 50px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -186,35 +186,18 @@ body {
     color: white;
 }
 
+/* Container pentru listă */
 .features-content {
     display: flex;
-    align-items: center;
-    gap: 40px;
     justify-content: center;
-}
-
-.phone-container {
-    flex: 0 0 auto;
-}
-
-.phone-img {
-    max-width: 180px;
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    margin-top: 30px;
-    margin-bottom: 30px;
-    transform: translateY(50px);
-    opacity: 0;
-    transition: transform 1s ease, opacity 1s ease;
 }
 
 .feature-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    flex: 1;
+    width: 100%;
+    max-width: 800px;
 }
 
 .feature-item {
@@ -232,9 +215,10 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.feature-item h3 {
+.feature-item p {
     font-size: 20px;
     color: white;
+    margin: 0;
 }
 
 .animate-on-scroll {
@@ -452,19 +436,12 @@ body {
         font-size: 32px;
     }
 
-    .features-content {
-        flex-direction: column;
-    }
-
-    .phone-img {
-        max-width: 180px;
-    }
-
     .feature-list {
         gap: 20px;
+        max-width: 90%;
     }
 
-    .feature-item h3 {
+    .feature-item p {
         font-size: 18px;
     }
 
@@ -547,26 +524,18 @@ body {
         margin: 0 auto;
     }
 
-    .features-content {
-        flex-direction: column;
-    }
-
     .features {
         padding: 40px 15px;
     }
 
     .feature-list {
-        margin-top: 20px;
-        width: 100%;
-        display: grid;
         grid-template-columns: 1fr;
         gap: 15px;
+        max-width: 100%;
     }
 
-    .phone-img {
-        max-width: 150px;
-        margin: 20px auto;
-        display: block;
+    .feature-item p {
+        font-size: 16px;
     }
 
     .logo-container {
