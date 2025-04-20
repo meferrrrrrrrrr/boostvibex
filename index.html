@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,8 @@
         <p class="subtitle">Idei. Titluri. Trenduri. Tot ce ai nevoie pentru content viral.</p>
     </section>
 
-    <a href="#signup" class="btn-boost" aria-label="Înscrie-te pentru a începe cu BoostVibeX">Boost me</a> <!-- Adăugat aria-label pentru accesibilitate -->
+    <a href="#signup" class="btn-boost" aria-label="Înscrie-te pentru a începe cu BoostVibeX">Boost me</a>
+    <!-- Adăugat aria-label pentru accesibilitate -->
 
     <section class="about">
         <h2>Ce este BoostVibeX?</h2>
@@ -53,41 +55,46 @@
     </section>
 
     <!-- Secțiunea interactivă unde utilizatorii pot genera conținut -->
-<section id="interactive">
-  <!-- Titlul secțiunii -->
-  <h2>Generează conținut în câteva secunde!</h2>
+    <section id="interactive">
+        <!-- Titlul secțiunii -->
+        <h2>Generează conținut în câteva secunde!</h2>
 
-  <!-- Container pentru caseta de prompt și butoane -->
-  <div class="prompt-container">
-    <!-- Caseta de prompt (dezactivată, doar pentru afișare) -->
-    <input type="text" id="prompt-display" disabled placeholder="Promptul tău va apărea aici..." />
+        <!-- Container pentru caseta de prompt și butoane -->
+        <div class="prompt-container">
+            <!-- Caseta de prompt (dezactivată, doar pentru afișare) -->
+            <input type="text" id="prompt-display" disabled placeholder="Promptul tău va apărea aici..." />
 
-    <!-- Câmp opțional pentru subiect -->
-    <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Despre fitness" maxlength="50" />
+            <!-- Câmp opțional pentru subiect -->
+            <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Despre fitness"
+                maxlength="50" />
 
-    <!-- Butoane predefinite -->
-    <div class="prompt-buttons">
-      <button id="generate-idea">Idei de conținut</button>
-      <button id="generate-description">Descrieri optimizate</button>
-    </div>
-  </div>
+            <!-- Butoane predefinite -->
+            <div class="prompt-buttons">
+                <button id="generate-idea" aria-label="Generează idei de conținut">Idei de conținut</button>
+                <!-- Adăugat aria-label pentru accesibilitate -->
+                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri
+                    optimizate</button> <!-- Adăugat aria-label pentru accesibilitate -->
+            </div>
+        </div>
 
-  <!-- Div pentru mesaje (ex. loading, eroare, limită încercări) -->
-  <div id="message" class="message"></div>
+        <!-- Div pentru mesaje (ex. loading, eroare, limită încercări) -->
+        <div id="message" class="message"></div>
 
-  <!-- Div unde va apărea răspunsul generat de AI -->
-  <div id="response" class="response"></div>
+        <!-- Div unde va apărea răspunsul generat de AI -->
+        <div id="response" class="response"></div>
 
-  <!-- Butoane de interacțiune (vor apărea doar după ce se generează un răspuns) -->
-  <div id="response-actions" class="response-actions" style="display: none;">
-    <button id="generate-another">Generează alt răspuns</button>
-    <div class="feedback-buttons">
-      <button id="like">👍 Like</button>
-      <button id="dislike">👎 Dislike</button>
-    </div>
-    <button id="copy-response">Copiază răspunsul</button>
-  </div>
-</section>
+        <!-- Butoane de interacțiune (vor apărea doar după ce se generează un răspuns) -->
+        <div id="response-actions" class="response-actions" style="display: none;">
+            <button id="generate-another">Generează alt răspuns</button>
+            <div class="feedback-buttons">
+                <button id="like" aria-label="Îmi place răspunsul">👍 Like</button>
+                <!-- Adăugat aria-label pentru accesibilitate -->
+                <button id="dislike" aria-label="Nu-mi place răspunsul">👎 Dislike</button>
+                <!-- Adăugat aria-label pentru accesibilitate -->
+            </div>
+            <button id="copy-response">Copiază răspunsul</button>
+        </div>
+    </section>
 
     <section class="signup-form" id="signup">
         <div class="container">
@@ -102,7 +109,8 @@
     </section>
 
     <footer class="footer">
-        <p>© 2025 BoostVibeX. Toate drepturile rezervate.</p> <!-- Eliminat link-urile #privacy și #terms până când sunt disponibile paginile -->
+        <p>© 2025 BoostVibeX. Toate drepturile rezervate.</p>
+        <!-- Eliminat link-urile #privacy și #terms până când sunt disponibile paginile -->
     </footer>
 
     <script>
@@ -192,4 +200,5 @@
         });
     </script>
 </body>
+
 </html>
