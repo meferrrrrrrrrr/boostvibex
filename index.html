@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +25,7 @@
         <p class="subtitle">Idei. Titluri. Trenduri. Tot ce ai nevoie pentru content viral.</p>
     </section>
 
-    <a href="#signup" class="btn-boost">Boost me</a>
+    <a href="#signup" class="btn-boost" aria-label="Înscrie-te pentru a începe cu BoostVibeX">Boost me</a> <!-- Adăugat aria-label pentru accesibilitate -->
 
     <section class="about">
         <h2>Ce este BoostVibeX?</h2>
@@ -34,24 +33,24 @@
     </section>
 
     <section class="features" id="features">
-    <h2>Ce poți face cu BoostVibeX?</h2>
-    <div class="features-content">
-        <div class="feature-list">
-            <div class="feature-item">
-                <p>💡 Idei instant de content</p>
-            </div>
-            <div class="feature-item">
-                <p>📝 Descrieri optimizate</p>
-            </div>
-            <div class="feature-item">
-                <p>🎯 Titluri catchy</p>
-            </div>
-            <div class="feature-item">
-                <p>📅 Trenduri zilnice + Calendar 7 zile</p>
+        <h2>Ce poți face cu BoostVibeX?</h2>
+        <div class="features-content">
+            <div class="feature-list">
+                <div class="feature-item">
+                    <p>💡 Idei instant de content</p>
+                </div>
+                <div class="feature-item">
+                    <p>📝 Descrieri optimizate</p>
+                </div>
+                <div class="feature-item">
+                    <p>🎯 Titluri catchy</p>
+                </div>
+                <div class="feature-item">
+                    <p>📅 Trenduri zilnice + Calendar 7 zile</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="signup-form" id="signup">
         <div class="container">
@@ -65,14 +64,9 @@
         </div>
     </section>
 
-    <section class="cta">
-        <h2>Amplifică-ți conținutul. Intră în vibe.</h2>
-        <a href="#signup" class="btn-secondary">Get Early Access</a>
-    </section>
-
     <footer class="footer">
-    <p>&copy; 2025 BoostVibeX. Toate drepturile rezervate. | <a href="#privacy">Politica de confidențialitate</a> | <a href="#terms">Termeni și condiții</a></p>
-</footer>
+        <p>© 2025 BoostVibeX. Toate drepturile rezervate.</p> <!-- Eliminat link-urile #privacy și #terms până când sunt disponibile paginile -->
+    </footer>
 
     <script>
         // Scroll Functionality for Navbar
@@ -147,7 +141,8 @@
                         confirmationMessage.style.color = 'green';
                         form.reset(); // Resetează formularul
                     } else {
-                        confirmationMessage.textContent = "Înscrierea a fost salvată, mulțumim!";
+                        // Ajustat mesajul pentru a reflecta o eroare clară
+                        confirmationMessage.textContent = "Eroare: Adresa de email există deja sau nu este validă.";
                         confirmationMessage.style.color = 'orange';
                     }
                 } catch (error) {
@@ -160,5 +155,4 @@
         });
     </script>
 </body>
-
 </html>
