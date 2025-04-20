@@ -164,6 +164,7 @@ body {
     padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
+    margin-bottom: 50px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -630,6 +631,7 @@ body {
 
     .features {
         padding: 40px 15px;
+        margin-bottom: 30px;
     }
 
     .feature-list {
