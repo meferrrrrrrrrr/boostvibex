@@ -11,7 +11,6 @@
 }
 
 html {
-    width: 100%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -77,14 +76,22 @@ body {
     white-space: nowrap;
 }
 
-/* Buton din navbar */
-.navbar .btn-primary {
-    padding: 0.5rem 1rem;
+/* Buton general (combinat cu .navbar .btn-primary) */
+.btn-primary {
+    padding: 0.5rem 1rem; /* Stil din .navbar .btn-primary */
     border-radius: 20px;
     background: var(--gradient);
     color: white;
     font-weight: bold;
     text-decoration: none;
+    font-size: 18px; /* Stil din .btn-primary general */
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 /* Titlul mare */
@@ -124,24 +131,6 @@ body {
 .btn-boost:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
-}
-
-/* Butonul general */
-.btn-primary {
-    background: var(--gradient);
-    padding: 15px 30px;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 /* About Section */
@@ -227,48 +216,6 @@ body {
     transition: transform 1s ease, opacity 1s ease;
 }
 
-/* CTA Section */
-.cta {
-    background: #7e57c2;
-    padding: 40px 20px;
-    text-align: center;
-    color: white;
-    margin: 50px auto;
-    max-width: 800px;
-    border-radius: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.cta h2 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin: 0 auto 30px auto;
-    padding: 0 20px;
-}
-
-.cta a {
-    display: inline-block;
-    margin-top: 20px;
-}
-
-.btn-secondary {
-    background: var(--gradient);
-    color: #ffffff;
-    padding: 15px 30px;
-    font-size: 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-secondary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
-}
-
 /* Footer */
 .footer {
     background: linear-gradient(to right, rgba(0, 240, 255, 0.1), rgba(160, 32, 240, 0.1));
@@ -306,7 +253,7 @@ body {
 .footer a:hover {
     background: var(--gradient);
     -webkit-background-clip: text;
-    background-clip: text; /* Adăugat pentru compatibilitate */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -448,20 +395,6 @@ body {
     .feature-item p {
         font-size: 18px;
     }
-
-    .cta {
-        padding: 35px 20px;
-        max-width: 90%;
-    }
-
-    .cta h2 {
-        font-size: 32px;
-    }
-
-    .btn-secondary {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
 }
 
 /* Mobil (max-width: 600px) */
@@ -471,12 +404,8 @@ body {
         padding: 10px 20px;
     }
 
-    body {
-        padding-top: 20px;
-    }
-
     .hero {
-        padding-top: 150px;
+        padding-top: 100px; /* Ajustat pentru a înlocui body { padding-top: 20px; } */
         padding-bottom: 30px;
     }
 
@@ -496,15 +425,13 @@ body {
         margin-bottom: 30px;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary {
         font-size: 14px;
         padding: 10px 20px;
     }
 
     .features h2,
-    .about h2,
-    .cta h2 {
+    .about h2 {
         font-size: 26px;
     }
 
@@ -526,6 +453,12 @@ body {
     .feature-item {
         width: 90%;
         margin: 0 auto;
+        transition: none; /* Dezactivat efectul de hover pe mobil */
+    }
+
+    .feature-item:hover {
+        transform: none; /* Dezactivat efectul de hover pe mobil */
+        box-shadow: none; /* Dezactivat efectul de hover pe mobil */
     }
 
     .features {
@@ -548,29 +481,13 @@ body {
     }
 
     .logo-text {
-        font-size: 16px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 14px; /* Redus pentru a preveni tăierea textului */
+        white-space: normal; /* Permitem textului să se afișeze pe mai multe rânduri */
+        text-overflow: unset;
     }
 
     .navbar .btn-primary {
         padding: 6px 10px;
-        font-size: 14px;
-    }
-
-    .cta {
-        padding: 25px 15px;
-        max-width: 90%;
-    }
-
-    .cta h2 {
-        font-size: 24px;
-        margin-bottom: 15px;
-    }
-
-    .btn-secondary {
-        padding: 10px 20px;
         font-size: 14px;
     }
 
@@ -581,11 +498,11 @@ body {
 
     /* Formular */
     .signup-form {
-        padding: 15px;
+        padding: 10px; /* Redus pentru a economisi spațiu */
     }
 
     .container {
-        padding: 20px;
+        padding: 15px; /* Redus pentru a economisi spațiu */
     }
 
     .signup-form h2 {
@@ -593,16 +510,21 @@ body {
     }
 
     .signup-form input[type="email"] {
-        padding: 10px;
+        padding: 8px; /* Redus pentru a economisi spațiu */
         font-size: 0.9rem;
     }
 
     .signup-form button {
-        padding: 10px;
+        padding: 8px; /* Redus pentru a economisi spațiu */
         font-size: 0.9rem;
     }
 
     #confirmationMessage {
         font-size: 0.8rem;
+    }
+
+    /* Optimizare animații pentru performanță */
+    .animate-on-scroll {
+        transition: transform 0.5s ease, opacity 0.5s ease; /* Redus de la 1s la 0.5s pentru performanță */
     }
 }
