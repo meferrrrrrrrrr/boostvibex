@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const dislikeBtn = document.getElementById('dislike');
     const copyBtn = document.getElementById('copy-response');
 
-    // Funcție pentru a genera prompt-ul și a simula răspunsul
-    function generatePrompt(type) {
+    // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
+    async function generatePrompt(type) {
         const subject = promptSubject.value.trim();
         let promptText = '';
 
@@ -36,24 +36,32 @@ document.addEventListener('DOMContentLoaded', () => {
         responseDiv.textContent = '';
         responseActions.style.display = 'none';
 
-        // Simulăm un răspuns după 2 secunde
-        setTimeout(() => {
-            let mockResponse = '';
-            if (type === 'idea') {
-                mockResponse = subject ? 
-                    `1. Top 10 sfaturi pentru ${subject}\n2. Cum să începi un proiect despre ${subject}\n3. Beneficiile ${subject} în viața de zi cu zi` :
-                    '1. Top 10 sfaturi generale\n2. Cum să începi un proiect\n3. Beneficii generale în viața de zi cu zi';
-            } else if (type === 'description') {
-                mockResponse = subject ? 
-                    `Descoperă cele mai bune strategii pentru ${subject} în acest video! Abonează-te pentru mai multe sfaturi utile.` :
-                    'Descoperă strategii utile în acest video! Abonează-te pentru mai mult conținut.';
+        try {
+            // Facem cererea către ruta /api/openai
+            const response = await fetch('/api/openai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ prompt: promptText })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Eroare la generarea răspunsului');
             }
 
-            // Afișăm răspunsul
+            // Afișăm răspunsul primit de la OpenAI
             message.textContent = '';
-            responseDiv.textContent = mockResponse;
+            responseDiv.textContent = data.text;
             responseActions.style.display = 'flex';
-        }, 2000);
+        } catch (error) {
+            message.textContent = 'Eroare: ' + error.message;
+            setTimeout(() => {
+                message.textContent = '';
+            }, 3000);
+        }
     }
 
     // Adăugăm event listener pentru butonul "Idei de conținut"
