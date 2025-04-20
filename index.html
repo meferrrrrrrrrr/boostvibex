@@ -52,6 +52,43 @@
         </div>
     </section>
 
+    <!-- Secțiunea interactivă unde utilizatorii pot genera conținut -->
+<section id="interactive">
+  <!-- Titlul secțiunii -->
+  <h2>Generează conținut în câteva secunde!</h2>
+
+  <!-- Container pentru caseta de prompt și butoane -->
+  <div class="prompt-container">
+    <!-- Caseta de prompt (dezactivată, doar pentru afișare) -->
+    <input type="text" id="prompt-display" disabled placeholder="Promptul tău va apărea aici..." />
+
+    <!-- Câmp opțional pentru subiect -->
+    <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Despre fitness" maxlength="50" />
+
+    <!-- Butoane predefinite -->
+    <div class="prompt-buttons">
+      <button id="generate-idea">Idei de conținut</button>
+      <button id="generate-description">Descrieri optimizate</button>
+    </div>
+  </div>
+
+  <!-- Div pentru mesaje (ex. loading, eroare, limită încercări) -->
+  <div id="message" class="message"></div>
+
+  <!-- Div unde va apărea răspunsul generat de AI -->
+  <div id="response" class="response"></div>
+
+  <!-- Butoane de interacțiune (vor apărea doar după ce se generează un răspuns) -->
+  <div id="response-actions" class="response-actions" style="display: none;">
+    <button id="generate-another">Generează alt răspuns</button>
+    <div class="feedback-buttons">
+      <button id="like">👍 Like</button>
+      <button id="dislike">👎 Dislike</button>
+    </div>
+    <button id="copy-response">Copiază răspunsul</button>
+  </div>
+</section>
+
     <section class="signup-form" id="signup">
         <div class="container">
             <h2>Înscrie-te pentru BoostVibeX</h2>
