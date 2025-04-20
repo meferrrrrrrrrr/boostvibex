@@ -271,7 +271,7 @@ body {
     border-radius: 15px;
     padding: 30px;
     text-align: center;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0 барабара, 0, 0, 0.2);
 }
 
 .signup-form h2 {
@@ -339,13 +339,13 @@ body {
 
 #interactive h2 {
     font-size: 36px;
-    margin-bottom: 40px;
+    margin-bottom: 30px; /* Redus de la 40px la 30px pentru a micșora spațierea */
     color: white;
 }
 
 /* Container pentru caseta de prompt și butoane */
 .prompt-container {
-    max-width: 600px;
+    max-width: 500px; /* Redus de la 600px la 500px pentru a fi mai compact */
     margin: 0 auto;
     text-align: center;
 }
@@ -536,32 +536,32 @@ body {
     .feature-item p {
         font-size: 18px;
     }
-}
 
-#interactive {
-    padding: 60px 20px;
-}
+    #interactive {
+        padding: 60px 20px;
+    }
 
-#interactive h2 {
-    font-size: 32px;
-}
+    #interactive h2 {
+        font-size: 32px;
+    }
 
-.prompt-buttons {
-    gap: 10px;
-}
+    .prompt-buttons {
+        gap: 10px;
+    }
 
-.prompt-buttons button {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-}
+    .prompt-buttons button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
 
-.response {
-    font-size: 1rem;
-}
+    .response {
+        font-size: 1rem;
+    }
 
-.response-actions button {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+    .response-actions button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
 }
 
 /* Mobil (max-width: 600px) */
@@ -664,11 +664,11 @@ body {
     }
 
     #interactive {
-        padding: 40px 15px;
+        padding: 40px 20px; /* Mărirea padding-ului pe laterale de la 15px la 20px */
     }
     
     #interactive h2 {
-        font-size: 26px;
+        font-size: 28px; /* Mărirea fontului de la 26px la 28px pentru lizibilitate */
     }
     
     .prompt-container {
@@ -678,11 +678,13 @@ body {
     #prompt-display {
         padding: 10px;
         font-size: 0.9rem;
+        margin-bottom: 10px; /* Redus de la 15px la 10px pentru a micșora spațierea */
     }
     
     #prompt-subject {
         padding: 8px;
         font-size: 0.8rem;
+        margin-bottom: 10px; /* Redus de la 20px la 10px pentru a micșora spațierea */
     }
     
     .prompt-buttons {
@@ -691,7 +693,7 @@ body {
     }
     
     .prompt-buttons button {
-        padding: 10px;
+        padding: 12px; /* Mărirea padding-ului de la 10px la 12px pentru a fi mai ușor de apăsat */
         font-size: 0.9rem;
     }
     
