@@ -327,6 +327,147 @@ body {
     font-weight: 400;
 }
 
+/* Interactive Section */
+#interactive {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#interactive h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+/* Container pentru caseta de prompt și butoane */
+.prompt-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Caseta de prompt (dezactivată, doar pentru afișare) */
+#prompt-display {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+    cursor: not-allowed;
+}
+
+#prompt-display::placeholder {
+    color: #ccc;
+}
+
+/* Câmp pentru subiect */
+#prompt-subject {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#prompt-subject::placeholder {
+    color: #666;
+}
+
+/* Butoane predefinite */
+.prompt-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.prompt-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prompt-buttons button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+/* Mesaje (loading, eroare, limită încercări) */
+.message {
+    font-size: 1rem;
+    color: #fff;
+    margin: 20px 0;
+    min-height: 24px; /* Asigură spațiu pentru mesaje, chiar dacă e gol */
+}
+
+/* Răspuns generat de AI */
+.response {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(160, 32, 240, 0.2));
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Butoane de interacțiune */
+.response-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.response-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.response-actions button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#like:hover {
+    background: rgba(0, 255, 0, 0.3);
+}
+
+#dislike:hover {
+    background: rgba(255, 0, 0, 0.3);
+}
+
 /* ========== RESPONSIVE DESIGN ========== */
 
 /* Tablete (între 600px și 1024px) */
@@ -395,6 +536,32 @@ body {
     .feature-item p {
         font-size: 18px;
     }
+}
+
+#interactive {
+    padding: 60px 20px;
+}
+
+#interactive h2 {
+    font-size: 32px;
+}
+
+.prompt-buttons {
+    gap: 10px;
+}
+
+.prompt-buttons button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+.response {
+    font-size: 1rem;
+}
+
+.response-actions button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
 }
 
 /* Mobil (max-width: 600px) */
@@ -494,6 +661,61 @@ body {
     .footer {
         padding: 15px 15px;
         font-size: 12px;
+    }
+
+    #interactive {
+        padding: 40px 15px;
+    }
+    
+    #interactive h2 {
+        font-size: 26px;
+    }
+    
+    .prompt-container {
+        max-width: 100%;
+    }
+    
+    #prompt-display {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    #prompt-subject {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .prompt-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .prompt-buttons button {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .message {
+        font-size: 0.9rem;
+    }
+    
+    .response {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .response-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .response-actions button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    .feedback-buttons {
+        gap: 5px;
     }
 
     /* Formular */
