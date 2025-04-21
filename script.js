@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
     async function generatePrompt(type) {
         const subject = promptSubject.value.trim();
-        let promptText = '';
+        // Validare pentru subiect
+        if (subject && !/^[a-zA-Z0-9\s]+$/.test(subject)) {
+            message.textContent = 'Subiectul poate conține doar litere, cifre și spații.';
+            setTimeout(() => { message.textContent = ''; }, 3000);
+            return;
+        }
 
+        let promptText = '';
         // Generăm prompt-ul în funcție de tip (idei sau descrieri)
         if (type === 'idea') {
             promptText = subject ? 
@@ -36,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         responseDiv.textContent = '';
         responseActions.style.display = 'none';
 
+        // Adăugăm timeout pentru cerere
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 secunde timeout
+
         try {
             // Facem cererea către ruta /api/openai
             const response = await fetch('/api/openai', {
@@ -43,8 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ prompt: promptText })
+                body: JSON.stringify({ prompt: promptText }),
+                signal: controller.signal
             });
+
+            clearTimeout(timeoutId); // Anulăm timeout-ul dacă cererea a avut succes
 
             const data = await response.json();
 
@@ -57,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
             responseDiv.textContent = data.text;
             responseActions.style.display = 'flex';
         } catch (error) {
-            message.textContent = 'Eroare: ' + error.message;
+            clearTimeout(timeoutId);
+            message.textContent = 'Eroare: ' + (error.name === 'AbortError' ? 'Cererea a durat prea mult.' : error.message);
             setTimeout(() => {
                 message.textContent = '';
             }, 3000);
