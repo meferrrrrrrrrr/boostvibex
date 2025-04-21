@@ -134,14 +134,17 @@ body {
 }
 
 /* About Section */
-.about {
+.about-section {
     padding: 80px 20px;
     max-width: 800px;
+    width: 90%;
     margin: 0 auto;
     margin-bottom: 50px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #3a3a5a; /* O nuanță mai deschisă pentru contrast */
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(160, 32, 240, 0.3); /* Umbră cu tentă mov */
+    color: #ffffff;
+    border: 3px solid #c040ff; /* Bordură mai groasă și mai vizibilă */
 }
 
 .about h2 {
