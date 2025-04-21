@@ -219,7 +219,7 @@ body {
 
 /* Footer */
 .footer {
-    background: linear-gradient(to right, rgba(0, 240, 255, 0.1), rgba(160, 32, 240, 0.1));
+    background: #000000;
     padding: 20px 20px;
     text-align: center;
     color: white;
