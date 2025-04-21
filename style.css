@@ -272,7 +272,7 @@ body {
     border-radius: 15px;
     padding: 30px;
     text-align: center;
-    box-shadow: 0 10px 20px rgba(0 барабара, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .signup-form h2 {
@@ -340,13 +340,13 @@ body {
 
 #interactive h2 {
     font-size: 36px;
-    margin-bottom: 30px; /* Redus de la 40px la 30px pentru a micșora spațierea */
+    margin-bottom: 30px;
     color: white;
 }
 
 /* Container pentru caseta de prompt și butoane */
 .prompt-container {
-    max-width: 500px; /* Redus de la 600px la 500px pentru a fi mai compact */
+    max-width: 500px;
     margin: 0 auto;
     text-align: center;
 }
@@ -415,7 +415,7 @@ body {
     font-size: 1rem;
     color: #fff;
     margin: 20px 0;
-    min-height: 24px; /* Asigură spațiu pentru mesaje, chiar dacă e gol */
+    min-height: 24px;
 }
 
 /* Răspuns generat de AI */
@@ -573,7 +573,7 @@ body {
     }
 
     .hero {
-        padding-top: 100px; /* Ajustat pentru a înlocui body { padding-top: 20px; } */
+        padding-top: 100px;
         padding-bottom: 30px;
     }
 
@@ -621,12 +621,12 @@ body {
     .feature-item {
         width: 90%;
         margin: 0 auto;
-        transition: none; /* Dezactivat efectul de hover pe mobil */
+        transition: none;
     }
 
     .feature-item:hover {
-        transform: none; /* Dezactivat efectul de hover pe mobil */
-        box-shadow: none; /* Dezactivat efectul de hover pe mobil */
+        transform: none;
+        box-shadow: none;
     }
 
     .features {
@@ -650,8 +650,8 @@ body {
     }
 
     .logo-text {
-        font-size: 14px; /* Redus pentru a preveni tăierea textului */
-        white-space: normal; /* Permitem textului să se afișeze pe mai multe rânduri */
+        font-size: 14px;
+        white-space: normal;
         text-overflow: unset;
     }
 
@@ -666,11 +666,11 @@ body {
     }
 
     #interactive {
-        padding: 40px 40px; /* Mărirea padding-ului pe laterale de la 15px la 20px */
+        padding: 40px 40px;
     }
     
     #interactive h2 {
-        font-size: 28px; /* Mărirea fontului de la 26px la 28px pentru lizibilitate */
+        font-size: 28px;
     }
     
     .prompt-container {
@@ -680,13 +680,13 @@ body {
     #prompt-display {
         padding: 10px;
         font-size: 0.9rem;
-        margin-bottom: 10px; /* Redus de la 15px la 10px pentru a micșora spațierea */
+        margin-bottom: 10px;
     }
     
     #prompt-subject {
         padding: 8px;
         font-size: 0.8rem;
-        margin-bottom: 10px; /* Redus de la 20px la 10px pentru a micșora spațierea */
+        margin-bottom: 10px;
     }
     
     .prompt-buttons {
@@ -695,7 +695,7 @@ body {
     }
     
     .prompt-buttons button {
-        padding: 12px; /* Mărirea padding-ului de la 10px la 12px pentru a fi mai ușor de apăsat */
+        padding: 12px;
         font-size: 0.9rem;
     }
     
@@ -724,11 +724,11 @@ body {
 
     /* Formular */
     .signup-form {
-        padding: 10px; /* Redus pentru a economisi spațiu */
+        padding: 10px;
     }
 
     .container {
-        padding: 15px; /* Redus pentru a economisi spațiu */
+        padding: 15px;
     }
 
     .signup-form h2 {
@@ -736,12 +736,12 @@ body {
     }
 
     .signup-form input[type="email"] {
-        padding: 8px; /* Redus pentru a economisi spațiu */
+        padding: 8px;
         font-size: 0.9rem;
     }
 
     .signup-form button {
-        padding: 8px; /* Redus pentru a economisi spațiu */
+        padding: 8px;
         font-size: 0.9rem;
     }
 
@@ -751,6 +751,6 @@ body {
 
     /* Optimizare animații pentru performanță */
     .animate-on-scroll {
-        transition: transform 0.5s ease, opacity 0.5s ease; /* Redus de la 1s la 0.5s pentru performanță */
+        transition: transform 0.5s ease, opacity 0.5s ease;
     }
 }
