@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BoostVibeX - AI-ul tău personal de brainstorming. Generează idei, titluri și trenduri pentru conținut viral în câteva secunde!">
+    <meta name="description"
+        content="BoostVibeX - AI-ul tău personal de brainstorming. Generează idei, titluri și trenduri pentru conținut viral în câteva secunde!">
     <title>BoostVibeX</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon-32x32.png" type="image/png">
@@ -57,11 +58,13 @@
     <section id="interactive">
         <h2>Generează conținut în câteva secunde!</h2>
         <div class="prompt-container">
-            <input type="text" id="prompt-display" disabled placeholder="Promptul tău va apărea aici..." />
-            <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Despre fitness" maxlength="50" />
+            <textarea id="prompt-display" disabled placeholder="Promptul tău va apărea aici..." rows="2"></textarea>
+            <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Despre fitness"
+                maxlength="50" />
             <div class="prompt-buttons">
                 <button id="generate-idea" aria-label="Generează idei de conținut">Idei de conținut</button>
-                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri optimizate</button>
+                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri
+                    optimizate</button>
             </div>
         </div>
         <div id="message" class="message" aria-live="polite"></div>
@@ -168,4 +171,5 @@
     </script>
     <script src="script.js" defer></script>
 </body>
+
 </html>
