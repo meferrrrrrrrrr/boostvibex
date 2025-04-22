@@ -452,18 +452,19 @@ body {
 
 .response-actions button {
     padding: 10px 20px;
-    border: none;
+    border: 1px solid #ffffff20;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .response-actions button:hover {
     background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
 .feedback-buttons {
@@ -473,10 +474,12 @@ body {
 
 #like:hover {
     background: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.5);
 }
 
 #dislike:hover {
     background: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.5);
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
