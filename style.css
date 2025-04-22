@@ -78,13 +78,15 @@ body {
 
 /* Buton general (combinat cu .navbar .btn-primary) */
 .btn-primary {
-    padding: 0.5rem 1rem; /* Stil din .navbar .btn-primary */
+    padding: 0.5rem 1rem;
+    /* Stil din .navbar .btn-primary */
     border-radius: 20px;
     background: var(--gradient);
     color: white;
     font-weight: bold;
     text-decoration: none;
-    font-size: 18px; /* Stil din .btn-primary general */
+    font-size: 18px;
+    /* Stil din .btn-primary general */
     border: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -140,11 +142,11 @@ body {
     width: 90%;
     margin: 0 auto;
     margin-bottom: 50px;
-    background: #3a3a5a; /* O nuanță mai deschisă pentru contrast */
+    background: #4a4a6a;
     border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(160, 32, 240, 0.3); /* Umbră cu tentă mov */
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
     color: #ffffff;
-    border: 3px solid #c040ff; /* Bordură mai groasă și mai vizibilă */
+    border: 3px solid #4a4a6a;
 }
 
 .about h2 {
@@ -671,56 +673,56 @@ body {
     #interactive {
         padding: 40px 40px;
     }
-    
+
     #interactive h2 {
         font-size: 28px;
     }
-    
+
     .prompt-container {
         max-width: 100%;
     }
-    
+
     #prompt-display {
         padding: 10px;
         font-size: 0.9rem;
         margin-bottom: 10px;
     }
-    
+
     #prompt-subject {
         padding: 8px;
         font-size: 0.8rem;
         margin-bottom: 10px;
     }
-    
+
     .prompt-buttons {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .prompt-buttons button {
         padding: 12px;
         font-size: 0.9rem;
     }
-    
+
     .message {
         font-size: 0.9rem;
     }
-    
+
     .response {
         padding: 15px;
         font-size: 0.9rem;
     }
-    
+
     .response-actions {
         flex-direction: column;
         gap: 10px;
     }
-    
+
     .response-actions button {
         padding: 8px;
         font-size: 0.8rem;
     }
-    
+
     .feedback-buttons {
         gap: 5px;
     }
