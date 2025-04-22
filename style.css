@@ -166,13 +166,16 @@ body {
 
 /* Features Section */
 .features {
-    padding: 60px 20px;
-    max-width: 1000px;
+    padding: 80px 20px;
+    max-width: 800px;
+    width: 90%;
     margin: 0 auto;
     margin-bottom: 50px;
-    background: rgba(255, 255, 255, 0.05);
+    background: #4a4a6a;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    color: #ffffff;
+    border: 3px solid #4a4a6a;
 }
 
 .features h2 {
