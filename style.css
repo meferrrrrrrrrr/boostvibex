@@ -433,7 +433,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(160, 32, 240, 0.2));
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     font-size: 1.1rem;
     color: #fff;
