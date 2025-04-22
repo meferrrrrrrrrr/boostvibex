@@ -365,10 +365,10 @@ body {
 #prompt-display {
     width: 100%;
     padding: 12px;
-    border: none;
+    border: 1px solid #ffffff20;
     border-radius: 8px;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
     margin-bottom: 15px;
     text-align: center;
