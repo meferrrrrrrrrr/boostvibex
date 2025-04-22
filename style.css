@@ -341,9 +341,11 @@ body {
     padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.05);
+    background: #4a4a6a;
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    border: 3px solid #4a4a6a;
+    color: #ffffff;
 }
 
 #interactive h2 {
