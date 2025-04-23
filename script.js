@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Generăm prompt-ul în funcție de tip (idei sau descrieri)
         if (type === 'idea') {
             promptText = subject ? 
-                `Generează 3 idei de conținut pentru un blog despre ${subject}` : 
-                'Generează 3 idei de conținut pentru un blog';
+                `Generează 3 idei de conținut viral pentru fitness pe tema ${subject}, potrivite pentru TikTok sau Instagram Reels. Include un challenge sau exercițiu care să inspire peste 5.000 de share-uri, un titlu captivant și 1-2 hashtag-uri (ex. #FitnessChallenge).` : 
+                `Generează 3 idei de conținut viral pentru fitness, potrivite pentru TikTok sau Instagram Reels. Include un challenge sau exercițiu care să inspire peste 5.000 de share-uri, un titlu captivant și 1-2 hashtag-uri (ex. #FitnessChallenge).`;
         } else if (type === 'description') {
             promptText = subject ? 
-                `Scrie o descriere optimizată pentru un video YouTube despre ${subject}` : 
-                'Scrie o descriere optimizată pentru un video YouTube';
+                `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness despre ${subject}, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).` : 
+                `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).`;
         }
 
         // Afișăm prompt-ul în casetă
