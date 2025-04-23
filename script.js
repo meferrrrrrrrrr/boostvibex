@@ -26,14 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let promptText = '';
         // Generăm prompt-ul în funcție de tip (idei sau descrieri)
         if (type === 'idea') {
-            promptText = subject ? 
-                `Generează 3 idei de conținut viral pentru fitness pe tema ${subject}, potrivite pentru TikTok sau Instagram Reels. Include un challenge sau exercițiu care să inspire peste 5.000 de share-uri, un titlu captivant și 1-2 hashtag-uri (ex. #FitnessChallenge).` : 
-                `Generează 3 idei de conținut viral pentru fitness, potrivite pentru TikTok sau Instagram Reels. Include un challenge sau exercițiu care să inspire peste 5.000 de share-uri, un titlu captivant și 1-2 hashtag-uri (ex. #FitnessChallenge).`;
-        } else if (type === 'description') {
-            promptText = subject ? 
-                `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness despre ${subject}, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).` : 
-                `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).`;
-        }
+            promptText = subject ?
+            `Dă-mi 3 idei simple de conținut pentru fitness pe tema ${subject}, care să atragă atenția pe TikTok,
+            Instagram sau YouTube.` :
+            `Dă-mi 3 idei simple de conținut pentru fitness, care să atragă atenția pe TikTok, Instagram sau YouTube.`;
+          } // <-- Aici era lipsa acoladei
+          
+          else if (type === 'description') {
+            promptText = subject ?
+            `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness despre ${subject}, care să motiveze urmăritorii.` :
+            `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness, care să motiveze urmăritorii.`;
+          }
+          
         lastType = type; // Stocăm tipul prompt-ului
 
        
