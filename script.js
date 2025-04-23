@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Selectăm elementele din HTML
-    const promptDisplay = document.getElementById('prompt-display');
+    
     const promptSubject = document.getElementById('prompt-subject');
     const generateIdeaBtn = document.getElementById('generate-idea');
     const generateDescriptionBtn = document.getElementById('generate-description');
@@ -34,8 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).`;
         }
 
-        // Afișăm prompt-ul în casetă
-        promptDisplay.value = promptText;
+       
 
         // Afișăm mesajul de loading
         message.textContent = 'Se generează ideea ta... 🚀';
