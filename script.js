@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const likeBtn = document.getElementById('like');
     const dislikeBtn = document.getElementById('dislike');
     const copyBtn = document.getElementById('copy-response');
+    let lastType = ''; // Variabilă globală pentru a stoca tipul prompt-ului
 
     // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
     async function generatePrompt(type) {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness despre ${subject}, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).` : 
                 `Scrie o descriere captivantă de maxim 150 de caractere pentru un video YouTube de fitness, destinată unui public specific (ex. începători, atleți). Include 2-3 cuvinte-cheie (ex. HIIT, yoga) și un CTA (ex. ‘Începe acum!’).`;
         }
+        lastType = type; // Stocăm tipul prompt-ului
 
        
 
@@ -89,8 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adăugăm event listener pentru "Generează alt răspuns"
     generateAnotherBtn.addEventListener('click', () => {
-        const lastType = promptDisplay.value.includes('idei') ? 'idea' : 'description';
-        generatePrompt(lastType);
+        if (lastType) {
+            generatePrompt(lastType); // Folosim tipul stocat
+        }
     });
 
     // Adăugăm event listener pentru "Like"
