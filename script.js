@@ -126,3 +126,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// Navbar scroll effect
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+window.addEventListener('scroll', function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        navbar.style.top = '-80px';
+    } else {
+        navbar.style.top = '0';
+    }
+    if (scrollTop > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    lastScrollTop = scrollTop;
+});
+
+// Animation on scroll
+const animateElements = document.querySelectorAll('.feature-item');
+const observerOptions = {
+    threshold: 0.1
+};
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-on-scroll');
+        } else {
+            entry.target.classList.remove('animate-on-scroll');
+        }
+    });
+}, observerOptions);
+animateElements.forEach(element => {
+    observer.observe(element);
+});
