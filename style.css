@@ -361,27 +361,7 @@ body {
     text-align: center;
 }
 
-/* Caseta de prompt (dezactivată, doar pentru afișare) */
-#prompt-display {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ffffff20;
-    border-radius: 8px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    margin-bottom: 15px;
-    text-align: center;
-    cursor: not-allowed;
-    resize: none; /* Dezactivăm redimensionarea */
-    min-height: 60px; /* Înălțime minimă pentru 2 rânduri */
-    white-space: normal; /* Permitem ruperea textului pe rânduri */
-    overflow: hidden; /* Ascundem scroll-ul inutil */
-}
 
-#prompt-display::placeholder {
-    color: #ccc;
-}
 
 /* Câmp pentru subiect */
 #prompt-subject {
