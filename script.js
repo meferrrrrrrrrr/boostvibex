@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const subject = document.getElementById('prompt-subject').value.trim();
     
         // Validare pentru subiect
-        if (subject && !/^[a-zA-Z0-9\s]+$/.test(subject)) {
+        if (subject && !/^[a-zA-Z0-9ăîâșțĂÎÂȘȚ\s]+$/.test(subject)) {
             message.textContent = 'Subiectul poate conține doar litere, cifre și spații.';
             setTimeout(() => { message.textContent = ''; }, 3000);
             return;
