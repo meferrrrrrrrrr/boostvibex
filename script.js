@@ -15,10 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
     async function generatePrompt(type) {
-        const subject = promptSubject.value.trim();
+        const message = document.getElementById('message');
+        const subject = document.getElementById('prompt-subject').value.trim();
+    
         // Validare pentru subiect
         if (subject && !/^[a-zA-Z0-9\s]+$/.test(subject)) {
             message.textContent = 'Subiectul poate conține doar litere, cifre și spații.';
+            setTimeout(() => { message.textContent = ''; }, 3000);
+            return;
+        }
+        if (subject && (subject.trim().length < 3 || subject.trim().length > 200)) {
+            message.textContent = 'Subiectul trebuie să aibă între 3 și 200 de caractere.';
             setTimeout(() => { message.textContent = ''; }, 3000);
             return;
         }
