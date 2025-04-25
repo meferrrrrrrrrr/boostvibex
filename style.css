@@ -69,10 +69,14 @@ body {
 
 /* Text BoostVibeX */
 .logo-text {
+    font-family: 'Orbitron', sans-serif;
     font-size: 22px;
     font-weight: 700;
     color: #ffffff;
     white-space: nowrap;
+    overflow: hidden; /* Ascunde textul care nu e încă "scris" */
+    border-right: 3px solid #00F0FF; /* Cursorul care "clipește" */
+    animation: typing 2s steps(10, end), blink-caret 0.75s step-end infinite;
 }
 
 /* Buton general (combinat cu .navbar .btn-primary) */
@@ -240,11 +244,14 @@ body {
     animation: fadeInFooter 1.5s ease 0.2s forwards;
 }
 
-@keyframes fadeInFooter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00F0FF; }
 }
 
 .footer p {
@@ -475,6 +482,7 @@ body {
 
     .logo-text {
         font-size: 20px;
+        animation: typing 1.5s steps(10, end), blink-caret 0.75s step-end infinite;
     }
 
     .navbar .btn-primary {
@@ -650,6 +658,7 @@ body {
         font-size: 14px;
         white-space: normal;
         text-overflow: unset;
+        animation: typing 1s steps(10, end), blink-caret 0.75s step-end infinite;
     }
 
     .navbar .btn-primary {
