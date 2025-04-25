@@ -19,7 +19,7 @@ body {
     width: 100%;
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #6e48aa, #9d50bb);
+    background: linear-gradient(135deg, #1A2526, #00F0FF, #6e48aa);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    background: var(--gradient);
+    background: linear-gradient(to right, #1A2526, #00F0FF, #6e48aa);
     width: 100%;
     top: 0;
     left: 0;
