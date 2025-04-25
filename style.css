@@ -153,16 +153,16 @@ body {
 }
 
 .about h2 {
-    font-size: 32px;
+    font-size: 40px;
     margin-bottom: 16px;
     color: white;
     font-weight: 700;
 }
 
 .about p {
-    font-size: 20px;
+    font-size: 24px;
     color: #FFFFFF;
-    line-height: 1.8;
+    line-height: 1.6;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -528,11 +528,12 @@ body {
     }
 
     .about h2 {
-        font-size: 28px;
+        font-size: 32px;
+        margin-bottom: 24px;
     }
 
     .about p {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .features {
@@ -614,10 +615,7 @@ body {
     }
 
     .features h2,
-    .about h2 {
-        font-size: 26px;
-    }
-
+    
     .about-section {
         padding: 40px 15px;
         max-width: 90%;
@@ -626,10 +624,11 @@ body {
 
     .about h2 {
         font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .about p {
-        font-size: 16px;
+        font-size: 18px;
         line-height: 1.7;
     }
 
