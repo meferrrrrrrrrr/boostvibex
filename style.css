@@ -56,7 +56,6 @@ body {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
     justify-content: flex-start;
     max-width: 60%;
     overflow: hidden;
