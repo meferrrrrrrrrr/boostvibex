@@ -536,6 +536,7 @@ body {
 
     #interactive {
         padding: 60px 20px;
+        margin: 0 15px;
     }
 
     #interactive h2 {
@@ -663,6 +664,7 @@ body {
 
     #interactive {
         padding: 40px 40px;
+        margin: 0 10px;
     }
 
     #interactive h2 {
