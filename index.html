@@ -8,9 +8,9 @@
         content="BoostVibeX - AI-ul tău personal de brainstorming. Generează idei, titluri și trenduri pentru conținut viral în câteva secunde!">
     <title>BoostVibeX</title>
     <link rel="stylesheet" href="style.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -85,11 +85,11 @@
     <section class="signup-form" id="signup">
         <div class="container">
             <h2>Înscrie-te pentru BoostVibeX</h2>
-            <form id="signupForm" class="signup-form">
+            <div id="signupForm" class="signup-form-content">
                 <label for="email">Email-ul tău:</label>
                 <input type="email" id="email" name="email" placeholder="Introdu email-ul" required>
-                <button type="submit">Alătură-te!</button>
-            </form>
+                <button id="signup-button">Alătură-te!</button>
+            </div>
             <div id="confirmationMessage" style="display: none;"></div>
         </div>
     </section>
@@ -99,13 +99,12 @@
     </footer>
 
     <script>
-
-
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('signupForm');
+            const signupButton = document.getElementById('signup-button');
             const confirmationMessage = document.getElementById('confirmationMessage');
 
-            form.addEventListener('submit', async function (event) {
+            signupButton.addEventListener('click', async function (event) {
                 event.preventDefault();
                 const email = document.getElementById('email').value;
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
