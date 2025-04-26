@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Selectăm elementele din HTML
-    
     const promptSubject = document.getElementById('prompt-subject');
     const generateIdeaBtn = document.getElementById('generate-idea');
     const generateDescriptionBtn = document.getElementById('generate-description');
@@ -15,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
     async function generatePrompt(type) {
-        const message = document.getElementById('message');
         const subject = document.getElementById('prompt-subject').value.trim();
-    
+
         // Validare pentru subiect
         if (subject && !/^[a-zA-Z0-9ăîâșțĂÎÂȘȚ\s]+$/.test(subject)) {
             message.textContent = 'Subiectul poate conține doar litere, cifre și spații.';
@@ -34,20 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Generăm prompt-ul în funcție de tip (idei sau descrieri)
         if (type === 'idea') {
             promptText = subject ?
-            `Dă-mi 3 idei simple de conținut pentru fitness pe tema ${subject}, care să atragă atenția pe TikTok,
-            Instagram sau YouTube.` :
-            `Dă-mi 3 idei simple de conținut pentru fitness, care să atragă atenția pe TikTok, Instagram sau YouTube.`;
-          } // <-- Aici era lipsa acoladei
-          
-          else if (type === 'description') {
+                `Dă-mi 3 idei simple de conținut pentru fitness pe tema ${subject}, care să atragă atenția pe TikTok, Instagram sau YouTube.` :
+                `Dă-mi 3 idei simple de conținut pentru fitness, care să atragă atenția pe TikTok, Instagram sau YouTube.`;
+        } else if (type === 'description') {
             promptText = subject ?
-            `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness despre ${subject}, care să motiveze urmăritorii.` :
-            `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness, care să motiveze urmăritorii.`;
-          }
-          
-        lastType = type; // Stocăm tipul prompt-ului
+                `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness despre ${subject}, care să motiveze urmăritorii.` :
+                `Scrie o descriere scurtă de maxim 150 de caractere pentru un video de fitness, care să motiveze urmăritorii.`;
+        }
 
-       
+        lastType = type; // Stocăm tipul prompt-ului
 
         // Afișăm mesajul de loading
         message.textContent = 'Se generează ideea ta... 🚀';
@@ -125,46 +118,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adăugăm event listener pentru "Copiază răspunsul"
     copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(responseDiv.textContent).then(() => {
-            message.textContent = 'Răspunsul a fost copiat! 📋';
+        if (!navigator.clipboard) {
+            message.textContent = 'Copierea nu este suportată în acest browser.';
             setTimeout(() => {
                 message.textContent = '';
             }, 2000);
-        });
-    });
-});
-// Navbar scroll effect
-let lastScrollTop = 0;
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', function () {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop) {
-        navbar.style.top = '-80px';
-    } else {
-        navbar.style.top = '0';
-    }
-    if (scrollTop > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    lastScrollTop = scrollTop;
-});
-
-// Animation on scroll
-const animateElements = document.querySelectorAll('.feature-item');
-const observerOptions = {
-    threshold: 0.1
-};
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-on-scroll');
-        } else {
-            entry.target.classList.remove('animate-on-scroll');
+            return;
         }
+        navigator.clipboard.writeText(responseDiv.textContent)
+            .then(() => {
+                message.textContent = 'Răspunsul a fost copiat! 📋';
+                setTimeout(() => {
+                    message.textContent = '';
+                }, 2000);
+            })
+            .catch((err) => {
+                message.textContent = 'Eroare la copiere: ' + err.message;
+                setTimeout(() => {
+                    message.textContent = '';
+                }, 2000);
+            });
     });
-}, observerOptions);
-animateElements.forEach(element => {
-    observer.observe(element);
+
+    // Navbar scroll effect
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            navbar.style.top = '-80px';
+        } else {
+            navbar.style.top = '0';
+        }
+        if (scrollTop > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Animation on scroll
+    const animateElements = document.querySelectorAll('.feature-item');
+    const observerOptions = {
+        threshold: 0.1
+    };
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-on-scroll');
+            } else {
+                entry.target.classList.remove('animate-on-scroll');
+            }
+        });
+    }, observerOptions);
+
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
 });
