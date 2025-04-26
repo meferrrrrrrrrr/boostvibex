@@ -10,6 +10,9 @@ export default async function handler(req, res) {
   if (!prompt) {
       return res.status(400).json({ error: 'Prompt-ul lipsește' });
   }
+  if (typeof prompt !== 'string' || prompt.trim().length < 3 || prompt.trim().length > 500) {
+    return res.status(400).json({ error: 'Prompt-ul trebuie să fie un șir de caractere între 3 și 500 de caractere' });
+}
 
   // Adăugăm timeout pentru cerere
   const controller = new AbortController();
@@ -38,6 +41,9 @@ export default async function handler(req, res) {
       if (!response.ok) {
           return res.status(response.status).json({ error: data.error || 'Eroare la apelarea OpenAI' });
       }
+      if (!data.choices || !Array.isArray(data.choices) || data.choices.length === 0) {
+        return res.status(500).json({ error: 'Răspunsul de la OpenAI este invalid' });
+    }
 
       // Returnăm răspunsul generat de OpenAI
       const generatedText = data.choices[0].message.content;
