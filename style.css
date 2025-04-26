@@ -59,10 +59,15 @@ body {
     justify-content: flex-start;
     max-width: 60%;
     overflow: hidden;
+    gap: 10px; /* Spațiu între imagine și text */
+}
+
+.logo-container a {
+    text-decoration: none;
 }
 
 /* Logo imagine */
-.logo {
+.logo-img {
     width: 40px;
     height: 40px;
 }
@@ -76,7 +81,9 @@ body {
     white-space: nowrap;
     overflow: hidden; /* Ascunde textul care nu e încă "scris" */
     border-right: 3px solid #00F0FF; /* Cursorul care "clipește" */
-    animation: typing 2s steps(10, end), blink-caret 0.75s step-end infinite;
+    display: inline-block;
+    width: 0;
+    animation: typing 2s steps(10, end) forwards, blink-caret 0.75s step-end 3;
 }
 
 /* Buton general (combinat cu .navbar .btn-primary) */
@@ -246,7 +253,7 @@ body {
 
 @keyframes typing {
     from { width: 0; }
-    to { width: 100%; }
+    to { width: 150px; } /* Ajustat */
 }
 
 @keyframes blink-caret {
@@ -465,6 +472,8 @@ body {
 .response-actions button:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
+
+
 }
 
 .feedback-buttons {
@@ -482,6 +491,14 @@ body {
     border-color: rgba(255, 0, 0, 0.5);
 }
 
+.btn-primary:focus,
+.prompt-buttons button:focus,
+.signup-form button:focus,
+.response-actions button:focus {
+    outline: 2px solid #00F0FF;
+    outline-offset: 2px;
+}
+
 /* ========== RESPONSIVE DESIGN ========== */
 
 /* Tablete (între 600px și 1024px) */
@@ -490,9 +507,20 @@ body {
         padding: 15px 30px;
     }
 
+    .logo-img {
+        width: 35px;
+        height: 35px;
+    }
+
     .logo-text {
         font-size: 20px;
-        animation: typing 1.5s steps(10, end), blink-caret 0.75s step-end infinite;
+        animation: typing 1.5s steps(10, end) forwards, blink-caret 0.75s step-end 2;
+        width: 0;
+    }
+
+    @keyframes typing { /* Adăugat aici */
+        from { width: 0; }
+        to { width: 140px; }
     }
 
     .navbar .btn-primary {
@@ -588,6 +616,11 @@ body {
         padding: 10px 20px;
     }
 
+    .logo-img {
+        width: 30px;
+        height: 30px;
+    }
+
     .hero {
         padding-top: 100px;
         padding-bottom: 30px;
@@ -667,10 +700,15 @@ body {
     }
 
     .logo-text {
-        font-size: 14px;
-        white-space: normal;
-        text-overflow: unset;
-        animation: typing 1s steps(10, end), blink-caret 0.75s step-end infinite;
+        font-size: 18px;
+        white-space: nowrap;
+        animation: typing 1s steps(10, end) forwards, blink-caret 0.75s step-end 2;
+        width: 0;
+    }
+
+    @keyframes typing { /* Adăugat aici */
+        from { width: 0; }
+        to { width: 130px; }
     }
 
     .navbar .btn-primary {
