@@ -33,34 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    try {
-      // Facem cererea către API-ul AWS fără x-api-key
-      const response = await fetch('https://97kdea1gnl.execute-api.eu-north-1.amazonaws.com/prod/submit-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email })
-      });
-
-      const data = await response.json();
-      console.log("Răspuns API:", data); // Debugging
-      confirmationMessage.style.display = 'block';
-
-      if (response.ok) {
-        confirmationMessage.textContent = "Mulțumim pentru înscriere!";
-        confirmationMessage.style.color = 'white';
-        emailInput.value = '';
-      } else {
-        confirmationMessage.textContent = `Eroare: ${data.message || 'Ceva nu a mers bine, te rog încearcă din nou.'}`;
-        confirmationMessage.style.color = 'orange';
-      }
-    } catch (error) {
-      console.log("Eroare fetch:", error); // Debugging
-      confirmationMessage.style.display = 'block';
-      confirmationMessage.style.color = 'red';
-      confirmationMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
-    }
+    // TODO: Implement Firebase Authentication for email signup
+    confirmationMessage.style.display = 'block';
+    confirmationMessage.style.color = 'white';
+    confirmationMessage.textContent = 'Înscriere temporară: Firebase va fi implementat aici!';
+    emailInput.value = '';
   });
 
   // Funcție pentru a genera prompt-ul și a apela API-ul OpenAI
@@ -74,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     if (subject && (subject.trim().length < 3 || subject.trim().length > 200)) {
-      message.textContent = 'Subiectul trebuie să aibă între 3 și 200 de caractere.';
+      message.textContent = 'Subiectul trebuie să avea între 3 și 200 de caractere.';
       setTimeout(() => { message.textContent = ''; }, 6000);
       return;
     }
