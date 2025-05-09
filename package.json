@@ -1,0 +1,30 @@
+{
+  "name": "boostvibexorg",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "vercel dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meferrrrrrrrr/boostvibex.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meferrrrrrrrr/boostvibex/issues"
+  },
+  "homepage": "https://github.com/meferrrrrrrrr/boostvibex#readme",
+  "devDependencies": {
+    "vercel": "^41.7.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "franc": "^6.2.0",
+    "rate-limiter-flexible": "^7.1.0"
+  }
+}

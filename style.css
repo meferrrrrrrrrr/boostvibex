@@ -1,0 +1,911 @@
+/* Definim variabila pentru gradient */
+:root {
+    --gradient: linear-gradient(to right, #1A2526, #00F0FF, #6e48aa);
+}
+
+/* Resetare margini default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1A2526, #00F0FF, #6e48aa);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-top: 80px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--gradient);
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    transition: top 0.3s;
+    z-index: 1000;
+    flex-wrap: nowrap;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 60%;
+    overflow: hidden;
+    gap: 10px; /* Spațiu între imagine și text */
+}
+
+.logo-container a {
+    text-decoration: none;
+}
+
+/* Logo imagine */
+.logo-img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Text BoostVibeX */
+.logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden; /* Ascunde textul care nu e încă "scris" */
+    border-right: 3px solid #ffffff; /* Cursorul care "clipește" */
+    display: inline-block;
+    width: 0;
+    animation: typing 2.5s steps(10, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+/* Buton general (combinat cu .navbar .btn-primary) */
+.btn-primary {
+    padding: 0.5rem 1rem;
+    /* Stil din .navbar .btn-primary */
+    border-radius: 20px;
+    background: var(--gradient);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    /* Stil din .btn-primary general */
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+}
+
+.btn-primary:active {
+    transform: scale(0.98); /* Efect subtil la apăsare */
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* Titlul mare */
+.main-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+/* Subtext */
+.subtitle {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.btn-boost {
+    display: inline-block;
+    background: var(--gradient);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-boost:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+.btn-boost:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(160, 32, 240, 0.3);
+}
+
+/* About Section */
+.about-section {
+    padding: 80px 20px;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    background: #4a4a6a;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    color: #ffffff;
+    border: 3px solid #4a4a6a;
+}
+
+.about-section h2 {
+    font-size: 40px;
+    margin-bottom: 16px;
+    color: white;
+    font-weight: 700;
+}
+
+.about-section p {
+    font-size: 24px;
+    color: #FFFFFF;
+    line-height: 1.6;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* Features Section */
+.features {
+    padding: 80px 20px;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    background: #4a4a6a;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    color: #ffffff;
+    border: 3px solid #4a4a6a;
+}
+
+.features h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: white;
+}
+
+/* Container pentru listă */
+.features-content {
+    display: flex;
+    justify-content: center;
+}
+
+.feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.feature-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item p {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+}
+
+.animate-on-scroll {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Footer */
+.footer {
+    background: transparent; /* Elimină chenarul negru */
+    color: #ffffff;
+    padding: 20px 15px;
+    margin-top: 20px; /* Adaugă spațiu deasupra footer-ului */
+    margin-bottom: 20px; /* Adaugă spațiu dedesubt, ca să nu fie lipit de jos */
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInFooter 1s ease forwards;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px; /* Font mic pentru linia principală */
+}
+
+.footer-main a {
+    color: #ffffff; /* Schimbă din cyan în negru */
+    text-decoration: none;
+    transition: none; /* Elimină tranziția */
+}
+
+.footer-main a:hover {
+    color: #000000; /* Rămâne negru la hover */
+}
+
+.footer-divider {
+    color: #e0e0e0; /* Separator gri */
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spațiu mic între link-urile sociale */
+}
+
+.footer-social a {
+    color: #ffffff; /* Schimbă din cyan în negru */
+    text-decoration: none;
+    font-size: 10px;
+    transition: none; /* Elimină tranziția */
+}
+
+.footer-social a:hover {
+    color: #000000; /* Rămâne negru la hover */
+}
+
+@keyframes fadeInFooter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 150px; } /* Ajustat */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #00F0FF; }
+}
+
+/* Formular de înscriere */
+.signup-form {
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    background: #4a4a6a;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    border: 3px solid #4a4a6a;
+}
+
+.signup-form h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.signup-form label {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.signup-form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.signup-form input[type="email"]::placeholder {
+    color: #666;
+}
+
+.signup-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup-form button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+.signup-form button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(160, 32, 240, 0.3);
+}
+
+#confirmationMessage {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Interactive Section */
+#interactive {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #4a4a6a;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(74, 74, 106, 0.3);
+    border: 3px solid #4a4a6a;
+    color: #ffffff;
+}
+
+#interactive h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* Container pentru caseta de prompt și butoane */
+.prompt-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Câmp pentru subiect */
+#prompt-subject {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#prompt-subject::placeholder {
+    color: #666;
+}
+
+/* Butoane predefinite */
+.prompt-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.prompt-buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.prompt-buttons button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(160, 32, 240, 0.5);
+}
+
+.prompt-buttons button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(160, 32, 240, 0.3);
+}
+
+/* Mesaje (loading, eroare, limită încercări) */
+.message {
+    font-size: 1rem;
+    color: #fff;
+    margin: 20px 0;
+    min-height: 24px;
+}
+
+/* Răspuns generat de AI */
+.response {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Butoane de interacțiune */
+.response-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.response-actions button {
+    padding: 10px 20px;
+    border: 1px solid #ffffff20;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.response-actions button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.response-actions button:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.98);
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#like:hover {
+    background: rgba(0, 255, 0, 0.3);
+    border-color: rgba(0, 255, 0, 0.5);
+}
+
+#dislike:hover {
+    background: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+.btn-primary:focus,
+.prompt-buttons button:focus,
+.signup-form button:focus,
+.response-actions button:focus {
+    outline: 2px solid #00F0FF;
+    outline-offset: 2px;
+}
+
+.generation-date {
+    font-size: 12px;
+    color: #cccccc; /* Gri subtil */
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Buton Clear */
+#clear-subject {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #333333 !important;
+    color: #00ffcc !important;
+    border: 1px solid #00ffcc !important;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+#clear-subject:hover {
+    background-color: rgba(0, 255, 204, 0.1);
+}
+
+.prompt-container div[style*="display: flex"] {
+    align-items: center; /* Centrat vertical */
+    gap: 5px; /* Spațiu între input și buton */
+    margin-bottom: 20px; /* Spațiu între container și butoanele de jos */
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablete (între 600px și 1024px) */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 30px;
+    }
+
+    .logo-img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+        white-space: nowrap;
+        border-right: 3px solid #ffffff;
+        animation: typing 2s steps(10, end) forwards, blink-caret 0.75s step-end infinite;
+        width: 140px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 0 20px;
+    }
+
+    .footer-main {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .footer-social {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar .btn-primary {
+        padding: 8px 15px;
+        font-size: 16px;
+    }
+
+    .hero {
+        padding-top: 120px;
+        padding-bottom: 40px;
+    }
+
+    .main-title {
+        font-size: 40px;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .btn-boost {
+        font-size: 18px;
+        padding: 12px 25px;
+        margin-bottom: 40px;
+    }
+
+    .about-section {
+        padding: 60px 20px;
+        max-width: 90%;
+        margin-bottom: 40px;
+    }
+
+    .about-section h2 {
+        font-size: 32px;
+        margin-bottom: 24px;
+    }
+
+    .about-section p {
+        font-size: 20px;
+    }
+
+    .features {
+        padding: 60px 20px;
+    }
+
+    .features h2 {
+        font-size: 32px;
+    }
+
+    .feature-list {
+        gap: 20px;
+        max-width: 90%;
+    }
+
+    .feature-item p {
+        font-size: 18px;
+    }
+
+    #interactive {
+        padding: 60px 20px;
+        margin: 0 15px;
+    }
+
+    #interactive h2 {
+        font-size: 32px;
+    }
+
+    .prompt-buttons {
+        gap: 10px;
+    }
+
+    .prompt-buttons button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .response {
+        font-size: 1rem;
+    }
+
+    .response-actions button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobil (max-width: 600px) */
+@media (max-width: 600px) {
+    .navbar {
+        flex-wrap: nowrap;
+        padding: 10px 20px;
+    }
+
+    .logo-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 30px;
+    }
+
+    .main-title {
+        font-size: 32px;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .btn-boost {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .features h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .about-section {
+        padding: 40px 15px;
+        max-width: 90%;
+        margin-bottom: 30px;
+    }
+
+    .about-section h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .about-section p {
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .feature-item {
+        width: 90%;
+        margin: 0 auto;
+        transition: none;
+    }
+
+    .feature-item:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .features {
+        padding: 40px 15px;
+        margin-bottom: 30px;
+    }
+
+    .feature-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 100%;
+    }
+
+    .feature-item p {
+        font-size: 18px;
+    }
+
+    .logo-container {
+        max-width: 60%;
+        overflow: hidden;
+    }
+
+    .logo-text {
+        font-size: 18px;
+        white-space: nowrap;
+        border-right: 3px solid #ffffff;
+        animation: typing 1.5s steps(10, end) forwards, blink-caret 0.75s step-end infinite;
+        width: 130px;
+    }
+
+    .navbar .btn-primary {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 15px 10px;
+    }
+
+    .footer-container {
+        padding: 0 20px;
+    }
+
+    .footer-main {
+        font-size: 11px;
+    }
+
+    .footer-social a {
+        font-size: 9px;
+    }
+
+    #interactive {
+        padding: 40px 40px;
+        margin: 0 10px;
+    }
+
+    #interactive h2 {
+        font-size: 28px;
+    }
+
+    .prompt-container {
+        max-width: 100%;
+    }
+
+    #prompt-subject {
+        padding: 8px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .prompt-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .prompt-buttons button {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .message {
+        font-size: 0.9rem;
+    }
+
+    .response {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    .response-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .response-actions button {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+
+    .feedback-buttons {
+        gap: 5px;
+    }
+
+    /* Formular */
+    .signup-form {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .signup-form h2 {
+        font-size: 1.5rem;
+    }
+
+    .signup-form input[type="email"] {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .signup-form button {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    #confirmationMessage {
+        font-size: 0.8rem;
+    }
+
+    /* Optimizare animații pentru performanță */
+    .animate-on-scroll {
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+}

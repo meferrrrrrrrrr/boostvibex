@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🚧 Site în construcție | BoostVibex</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --bg: #f9fafb;
+      --text: #111827;
+      --accent: #6366f1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #4b5563;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #ddd;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="loader"></div>
+  <h1>🚧 Lucrăm la ceva grozav!</h1>
+  <p>BoostVibex este în curs de actualizare. Revino în curând!</p>
+  <footer>&copy; 2025 BoostVibex. Toate drepturile rezervate.</footer>
+</body>
+</html>
