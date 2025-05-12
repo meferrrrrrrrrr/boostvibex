@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BoostVibeX: AI pentru brainstorming. Generează idei și trenduri virale rapid!">
+    <meta name="keywords" content="AI, brainstorming, conținut viral, trenduri, BoostVibeX">
+    <!-- Adaugă OpenAI în CSP -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; connect-src 'self' https://97kdea1gnl.execute-api.eu-north-1.amazonaws.com https://api.openai.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <meta name="google-site-verification" content="925bZZhwr5w13cWwvNxCEDF5iYRFlo7taLpoCHMhwHo" />
+    <!-- Adaugă meta tag-uri Open Graph -->
+    <meta property="og:title" content="BoostVibeX – AI de Brainstorming și Conținut Viral">
+    <meta property="og:description"
+        content="Generează idei, titluri și trenduri virale rapid cu BoostVibeX! Perfect pentru Instagram și TikTok.">
+    <meta property="og:image" content="/images/logo.png">
+    <meta property="og:url" content="https://boostvibex.com">
+    <title>BoostVibeX – AI de Brainstorming și Conținut Viral</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/images/favicon-32x32.png" type="image/png" width="32" height="32">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" width="180" height="180">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="/">
+                <img src="images/logo.png" alt="BoostVibeX Logo" class="logo-img" width="960" height="960">
+                <span class="logo-text">BoostVibeX</span>
+            </a>
+        </div>
+        <a href="#signup" class="btn-primary">Join Beta</a>
+    </nav>
+
+    <section class="hero">
+        <h1 class="main-title">
+            Alimentează-ți creativitatea.<br>Amplifică-ți vibe-ul.
+        </h1>
+        <p class="subtitle">Idei. Titluri. Trenduri. Tot ce ai nevoie pentru content viral.</p>
+    </section>
+
+    <a href="#signup" class="btn-boost" aria-label="Înscrie-te pentru a începe cu BoostVibeX">Boost me</a>
+
+    <section class="about-section">
+        <h2>Ce este BoostVibeX?</h2>
+        <p>BoostVibeX este AI-ul tău personal de brainstorming. Creează idei, titluri și trenduri în câteva secunde!</p>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Ce poți face cu BoostVibeX?</h2>
+        <div class="features-content">
+            <div class="feature-list">
+                <div class="feature-item">
+                    <p>💡 Idei instant de content</p>
+                </div>
+                <div class="feature-item">
+                    <p>📝 Descrieri optimizate</p>
+                </div>
+                <div class="feature-item">
+                    <p>🎯 Titluri catchy</p>
+                </div>
+                <div class="feature-item">
+                    <p>📅 Trenduri zilnice + Calendar 7 zile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interactive">
+        <h2>Generează conținut în câteva secunde!</h2>
+        <div class="prompt-container">
+            <label for="prompt-subject">Subiect:</label>
+            <div style="display: flex; align-items: center;">
+                <input type="text" id="prompt-subject" placeholder="Subiect (opțional): ex. Antrenament pentru picioare"
+                    maxlength="50" style="flex-grow: 1;" />
+                <button id="clear-subject" aria-label="Șterge subiectul">×</button>
+            </div>
+            <div class="prompt-buttons">
+                <button id="generate-idea" aria-label="Generează idei de conținut">Idei de conținut</button>
+                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri
+                    optimizate</button>
+                <button id="generate-title" aria-label="Generează titluri catchy">Titluri catchy</button>
+            </div>
+        </div>
+        <div id="message" class="message" aria-live="polite"></div>
+        <div id="response" class="response"></div>
+        <div id="response-actions" class="response-actions" style="display: none;">
+            <button id="generate-another">Generează alt răspuns</button>
+            <div class="feedback-buttons">
+                <button id="like" aria-label="Îmi place răspunsul">👍 Like</button>
+                <button id="dislike" aria-label="Nu-mi place răspunsul">👎 Dislike</button>
+            </div>
+            <button id="copy-response">Copiază răspunsul</button>
+        </div>
+    </section>
+
+    <section class="signup-form" id="signup">
+        <div class="container">
+            <h2>Înscrie-te pentru BoostVibeX</h2>
+            <div id="signupForm" class="signup-form-content">
+                <label for="email">Email-ul tău:</label>
+                <input type="email" id="email" name="email" placeholder="exemplu@domain.com" required>
+                <button id="signup-button">Alătură-te!</button>
+            </div>
+            <div id="confirmationMessage" style="display: none;"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <span>© 2025 BoostVibeX. Toate drepturile rezervate.</span>
+                <span class="footer-divider">|</span>
+                <a href="/terms">Termeni și Condiții</a>
+                <span class="footer-divider">|</span>
+                <a href="/privacy">Politica de Confidențialitate</a>
+                <span class="footer-divider">|</span>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://x.com/boostvibex_ai" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="https://www.instagram.com/boostvibex.ai/" target="_blank"
+                    rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
