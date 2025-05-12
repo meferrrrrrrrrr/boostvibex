@@ -2,6 +2,19 @@
   "rewrites": [
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/(.*)", "destination": "/under-construction.html" }
+  ],
+  "redirects": [
+    {
+      "source": "http://boostvibex.com/:path*",
+      "destination": "https://boostvibex.vercel.app/under-construction.html",
+      "permanent": false
+    },
+    {
+      "source": "https://www.boostvibex.com/:path*",
+      "destination": "https://boostvibex.vercel.app/under-construction.html",
+      "permanent": false
+    }
   ]
 }
