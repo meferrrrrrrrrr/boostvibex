@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="ro">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="BoostVibeX: AI pentru brainstorming. Generează idei și trenduri virale rapid!">
     <meta name="keywords" content="AI, brainstorming, conținut viral, trenduri, BoostVibeX">
-    <!-- Adaugă OpenAI în CSP -->
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; connect-src 'self' https://97kdea1gnl.execute-api.eu-north-1.amazonaws.com https://api.openai.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
-    <meta name="google-site-verification" content="925bZZhwr5w13cWwvNxCEDF5iYRFlo7taLpoCHMhwHo" />
-    <!-- Adaugă meta tag-uri Open Graph -->
     <meta property="og:title" content="BoostVibeX – AI de Brainstorming și Conținut Viral">
-    <meta property="og:description"
-        content="Generează idei, titluri și trenduri virale rapid cu BoostVibeX! Perfect pentru Instagram și TikTok.">
+    <meta property="og:description" content="Generează idei, titluri și trenduri virale rapid cu BoostVibeX! Perfect pentru Instagram și TikTok.">
     <meta property="og:image" content="/images/logo.png">
     <meta property="og:url" content="https://boostvibex.com">
     <title>BoostVibeX – AI de Brainstorming și Conținut Viral</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="/images/favicon-32x32.png" type="image/png" width="32" height="32">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" width="180" height="180">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <nav class="navbar">
         <div class="logo-container">
@@ -32,7 +23,7 @@
                 <span class="logo-text">BoostVibeX</span>
             </a>
         </div>
-        <a href="#signup" class="btn-primary">Join Beta</a>
+        <a href="#signup" class="btn-primary">Înregistrează-te</a>
     </nav>
 
     <section class="hero">
@@ -54,7 +45,7 @@
         <div class="features-content">
             <div class="feature-list">
                 <div class="feature-item">
-                    <p>💡 Idei instant de content</p>
+                    <p>💡 Idei instant de conținut</p>
                 </div>
                 <div class="feature-item">
                     <p>📝 Descrieri optimizate</p>
@@ -62,14 +53,11 @@
                 <div class="feature-item">
                     <p>🎯 Titluri catchy</p>
                 </div>
-                <div class="feature-item">
-                    <p>📅 Trenduri zilnice + Calendar 7 zile</p>
-                </div>
             </div>
         </div>
     </section>
 
-    <section id="interactive">
+    <section id="interactive" style="display: none;">
         <h2>Generează conținut în câteva secunde!</h2>
         <div class="prompt-container">
             <label for="prompt-subject">Subiect:</label>
@@ -80,8 +68,7 @@
             </div>
             <div class="prompt-buttons">
                 <button id="generate-idea" aria-label="Generează idei de conținut">Idei de conținut</button>
-                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri
-                    optimizate</button>
+                <button id="generate-description" aria-label="Generează descrieri optimizate">Descrieri optimizate</button>
                 <button id="generate-title" aria-label="Generează titluri catchy">Titluri catchy</button>
             </div>
         </div>
@@ -103,7 +90,7 @@
             <div id="signupForm" class="signup-form-content">
                 <label for="email">Email-ul tău:</label>
                 <input type="email" id="email" name="email" placeholder="exemplu@domain.com" required>
-                <button id="signup-button">Alătură-te!</button>
+                <button id="signup-button">Înregistrează-te</button>
             </div>
             <div id="confirmationMessage" style="display: none;"></div>
         </div>
@@ -122,13 +109,11 @@
             </div>
             <div class="footer-social">
                 <a href="https://x.com/boostvibex_ai" target="_blank" rel="noopener noreferrer">X</a>
-                <a href="https://www.instagram.com/boostvibex.ai/" target="_blank"
-                    rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.instagram.com/boostvibex.ai/" target="_blank" rel="noopener noreferrer">Instagram</a>
             </div>
         </div>
     </footer>
 
     <script src="script.js" defer></script>
 </body>
-
 </html>
