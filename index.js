@@ -16,7 +16,7 @@ app.use(session({
   secret: 'fewjhfjew748hejwjfwe', // Schimbă asta cu o cheie secretă mai sigură
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: true } // Setează secure: true dacă folosești HTTPS
+  cookie: { secure: false } // Setează secure: true dacă folosești HTTPS
 }));
 
 // Configurare pentru a servi fișiere statice (ex. index.html, style.css)
@@ -69,6 +69,7 @@ app.post('/signup', (req, res) => {
 
 // Endpoint pentru conectare
 app.post('/login', (req, res) => {
+  console.log('Sesiune:', req.session.user);
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
