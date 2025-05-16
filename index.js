@@ -2,9 +2,22 @@ import express from 'express';
 import sqlite3 from 'sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import session from 'express-session';
+import dotenv from 'dotenv';
+
+// Încarcă variabilele din .env
+dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+// Configurare sesiuni
+app.use(session({
+  secret: 'fewjhfjew748hejwjfwe', // Schimbă asta cu o cheie secretă mai sigură
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true } // Setează secure: true dacă folosești HTTPS
+}));
 
 // Configurare pentru a servi fișiere statice (ex. index.html, style.css)
 const __filename = fileURLToPath(import.meta.url);
@@ -47,6 +60,8 @@ app.post('/signup', (req, res) => {
       if (err) {
         return res.status(500).json({ error: 'Eroare la înregistrare' });
       }
+      // Salvăm email-ul în sesiune
+      req.session.user = { email };
       res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
     });
   });
@@ -65,8 +80,70 @@ app.post('/login', (req, res) => {
     if (!row) {
       return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
     }
+    // Salvăm email-ul în sesiune
+    req.session.user = { email };
     res.status(200).json({ message: 'Conectare reușită!' });
   });
+});
+
+// Endpoint pentru OpenAI (doar pentru utilizatori conectați)
+app.post('/api/openai', async (req, res) => {
+  // Verificăm dacă utilizatorul e conectat
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Trebuie să fii conectat pentru a genera conținut.' });
+  }
+
+  const { type, subject } = req.body;
+  if (!type) {
+    return res.status(400).json({ error: 'Tipul de conținut este obligatoriu.' });
+  }
+
+  // Construim prompt-ul
+  let prompt;
+  switch (type) {
+    case 'idea':
+      prompt = `Generează o idee simplă de antrenament fitness pentru un utilizator de nivel mediu, care poate fi făcută acasă. Subiect: ${subject || 'generic fitness'}.`;
+      break;
+    case 'description':
+      prompt = `Scrie o descriere optimizată pentru Instagram despre un antrenament de 15 minute, care să atragă atenția. Subiect: ${subject || 'generic fitness'}.`;
+      break;
+    case 'title':
+      prompt = `Creează un titlu atractiv și viral pentru un videoclip de fitness, care să încurajeze click-urile. Subiect: ${subject || 'generic fitness'}.`;
+      break;
+    default:
+      return res.status(400).json({ error: 'Tip de conținut invalid.' });
+  }
+
+  try {
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ error: 'Cheia API OpenAI nu este setată.' });
+    }
+
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 100,
+        temperature: 0.7,
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return res.status(500).json({ error: data.error?.message || 'Eroare la apelul API.' });
+    }
+
+    res.status(200).json({ text: data.choices[0].message.content.trim() });
+  } catch (error) {
+    console.error('Eroare OpenAI:', error.message);
+    res.status(500).json({ error: 'Nu s-a putut genera conținutul.' });
+  }
 });
 
 // Pornim serverul
