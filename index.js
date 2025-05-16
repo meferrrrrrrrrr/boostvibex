@@ -52,6 +52,23 @@ app.post('/signup', (req, res) => {
   });
 });
 
+// Endpoint pentru conectare
+app.post('/login', (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: 'Email-ul este obligatoriu' });
+  }
+  db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
+    if (err) {
+      return res.status(500).json({ error: 'Eroare server' });
+    }
+    if (!row) {
+      return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
+    }
+    res.status(200).json({ message: 'Conectare reușită!' });
+  });
+});
+
 // Pornim serverul
 const PORT = 3000;
 app.listen(PORT, () => {
