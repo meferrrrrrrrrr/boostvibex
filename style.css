@@ -350,6 +350,12 @@ body {
     font-weight: 600;
 }
 
+.signup-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .signup-form label {
     font-size: 16px;
     color: #fff;
@@ -399,6 +405,39 @@ body {
     margin-top: 15px;
     font-size: 0.9rem;
     font-weight: 400;
+}
+
+#loginForm {
+    margin-top: 20px; /* Spațiere între formulare */
+}
+
+#loginMessage {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.toggle-button {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.toggle-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.toggle-button:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.98);
 }
 
 /* Interactive Section */
@@ -704,6 +743,11 @@ body {
         padding: 8px 15px;
         font-size: 0.9rem;
     }
+
+    .toggle-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
 }
 
 /* Mobil (max-width: 600px) */
@@ -900,7 +944,13 @@ body {
         font-size: 0.9rem;
     }
 
-    #confirmationMessage {
+    #confirmationMessage,
+    #loginMessage {
+        font-size: 0.8rem;
+    }
+
+    .toggle-button {
+        padding: 6px 12px;
         font-size: 0.8rem;
     }
 
