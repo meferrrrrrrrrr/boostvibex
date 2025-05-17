@@ -11,18 +11,21 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+// Configurare pentru Vercel (trust proxy)
+app.set('trust proxy', 1);
+
 // Configurare sesiuni
 app.use(session({
   secret: 'fewjhfjew748hejwjfwe', // Schimbă asta cu o cheie secretă mai sigură
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // Setează secure: true dacă folosești HTTPS
+  cookie: { secure: true } // Setează secure: true pentru HTTPS
 }));
 
 // Configurare pentru a servi fișiere statice (ex. index.html, style.css)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '.')));
 
 // Inițializăm baza de date SQLite
 const db = new sqlite3.Database('users.db', (err) => {
@@ -145,6 +148,11 @@ app.post('/api/openai', async (req, res) => {
     console.error('Eroare OpenAI:', error.message);
     res.status(500).json({ error: 'Nu s-a putut genera conținutul.' });
   }
+});
+
+// Rută explicită pentru a servi index.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Pornim serverul
