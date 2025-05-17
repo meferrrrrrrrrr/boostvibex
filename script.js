@@ -165,8 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Trimitem cookie-urile pentru a păstra sesiunea
-          'Cookie': document.cookie,
+          'Cookie': document.cookie, // Trimitem cookie-urile pentru sesiune
         },
         credentials: 'include', // Asigurăm că sesiunea e inclusă
         body: JSON.stringify({ type, subject: subject || 'generic fitness' }),
