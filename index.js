@@ -3,6 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
 import dotenv from 'dotenv';
+import sqlite3 from 'sqlite3';
+import bcrypt from 'bcrypt';
 
 // Încarcă variabilele din .env
 dotenv.config();
@@ -26,8 +28,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '.')));
 
-// Comentăm SQLite temporar
-/*
+// Conectare la SQLite
 const db = new sqlite3.Database('users.db', (err) => {
   if (err) {
     console.error('Eroare la conectarea bazei de date:', err);
@@ -40,14 +41,29 @@ db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      email TEXT UNIQUE NOT NULL
+      email TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL
     )
   `);
 });
-*/
+
+// Funcție helper pentru a face query-uri SQLite cu promisiuni
+const dbGet = (query, params) => new Promise((resolve, reject) => {
+  db.get(query, params, (err, row) => {
+    if (err) reject(err);
+    else resolve(row);
+  });
+});
+
+const dbRun = (query, params) => new Promise((resolve, reject) => {
+  db.run(query, params, function(err) {
+    if (err) reject(err);
+    else resolve(this);
+  });
+});
 
 // Endpoint pentru înregistrare
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const { email, password } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
@@ -59,24 +75,28 @@ app.post('/signup', (req, res) => {
     return res.status(400).json({ error: 'Parola trebuie să aibă minim 12 caractere' });
   }
 
-  // Verificăm dacă email-ul e deja în sesiune
-  if (req.session.users && req.session.users.some(user => user.email === email)) {
-    return res.status(400).json({ error: 'Email-ul există deja' });
-  }
+  try {
+    // Verificăm dacă email-ul există deja
+    const existingUser = await dbGet('SELECT email FROM users WHERE email = ?', [email]);
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email-ul există deja' });
+    }
 
-  // Inițializăm array-ul users dacă nu există
-  if (!req.session.users) {
-    req.session.users = [];
-  }
+    // Criptăm parola
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Salvăm email-ul și parola în sesiune
-  req.session.users.push({ email, password });
-  req.session.user = { email, password }; // Setăm utilizatorul curent
-  res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
+    // Inserăm utilizatorul nou
+    await dbRun('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
+    req.session.user = { email }; // Setăm utilizatorul curent
+    res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
+  } catch (error) {
+    console.error('Eroare la înregistrare:', error);
+    res.status(500).json({ error: 'Eroare la server' });
+  }
 });
 
 // Endpoint pentru conectare
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
@@ -85,19 +105,25 @@ app.post('/login', (req, res) => {
     return res.status(400).json({ error: 'Parola este obligatorie' });
   }
 
-  // Verificăm dacă email-ul e în sesiune
-  const user = req.session.users && req.session.users.find(user => user.email === email);
-  if (!user) {
-    return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
-  }
+  try {
+    // Verificăm dacă email-ul există
+    const user = await dbGet('SELECT * FROM users WHERE email = ?', [email]);
+    if (!user) {
+      return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
+    }
 
-  // Verificăm parola
-  if (user.password !== password) {
-    return res.status(400).json({ error: 'Parola este incorectă' });
-  }
+    // Verificăm parola
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(400).json({ error: 'Parola este incorectă' });
+    }
 
-  req.session.user = { email, password }; // Setăm utilizatorul curent
-  res.status(200).json({ message: 'Conectare reușită!' });
+    req.session.user = { email }; // Setăm utilizatorul curent
+    res.status(200).json({ message: 'Conectare reușită!' });
+  } catch (error) {
+    console.error('Eroare la conectare:', error);
+    res.status(500).json({ error: 'Eroare la server' });
+  }
 });
 
 // Endpoint pentru OpenAI (doar pentru utilizatori conectați)
