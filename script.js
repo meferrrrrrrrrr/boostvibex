@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginMessage = document.getElementById('loginMessage');
   const toggleLogin = document.getElementById('toggleLogin');
   const loginEmailInput = document.getElementById('loginEmail');
+  const logoutBtn = document.getElementById('logout'); // Adăugăm referința la butonul de logout
 
   // Elemente pentru generarea de conținut
   const promptSubject = document.getElementById('prompt-subject');
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmationMessage.style.color = 'green';
         emailInput.value = '';
         interactiveSection.style.display = 'block';
+        logoutBtn.style.display = 'block'; // Arătăm butonul de logout după înregistrare
       } else {
         confirmationMessage.textContent = data.error || 'Eroare la înregistrare.';
         confirmationMessage.style.color = 'red';
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       signupForm.style.display = 'block';
       toggleLogin.textContent = 'Ai deja cont? Conectează-te';
       loginMessage.style.display = 'none';
+      logoutBtn.style.display = 'none'; // Ascundem butonul la întoarcere
     }
   });
 
@@ -116,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginMessage.style.color = 'green';
         loginEmailInput.value = '';
         interactiveSection.style.display = 'block';
+        logoutBtn.style.display = 'block'; // Arătăm butonul de logout după conectare
       } else {
         loginMessage.textContent = data.error || 'Eroare la conectare.';
         loginMessage.style.color = 'red';
@@ -125,6 +129,27 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMessage.style.display = 'block';
       loginMessage.style.color = 'red';
       loginMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
+    }
+  });
+
+  // Logica pentru logout
+  logoutBtn.addEventListener('click', async () => {
+    try {
+      const response = await fetch('http://localhost:3000/logout', {
+        method: 'GET',
+        credentials: 'include', // Trimite cookie-urile
+      });
+      const data = await response.json();
+      message.textContent = data.message || 'Eroare la deconectare';
+      setTimeout(() => {
+        message.textContent = '';
+        interactiveSection.style.display = 'none'; // Ascundem secțiunea interactivă
+        loginForm.style.display = 'block'; // Arătăm formularul de login
+        logoutBtn.style.display = 'none'; // Ascundem butonul de logout
+      }, 2000);
+    } catch (error) {
+      message.textContent = `Eroare: ${error.message}`;
+      setTimeout(() => { message.textContent = ''; }, 2000);
     }
   });
 
