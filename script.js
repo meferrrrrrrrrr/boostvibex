@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const signupButton = document.getElementById('signup-button');
   const confirmationMessage = document.getElementById('confirmationMessage');
   const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password'); // Adăugăm referința la parolă
   const loginForm = document.getElementById('loginForm');
   const loginButton = document.getElementById('login-button');
   const loginMessage = document.getElementById('loginMessage');
   const toggleLogin = document.getElementById('toggleLogin');
   const loginEmailInput = document.getElementById('loginEmail');
-  const logoutBtn = document.getElementById('logout'); // Adăugăm referința la butonul de logout
+  const loginPasswordInput = document.getElementById('loginPassword'); // Adăugăm referința la parolă login
+  const logoutBtn = document.getElementById('logout');
 
   // Elemente pentru generarea de conținut
   const promptSubject = document.getElementById('prompt-subject');
@@ -25,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const clearSubjectBtn = document.getElementById('clear-subject');
   const interactiveSection = document.getElementById('interactive');
 
-  let lastType = ''; // Variabilă globală pentru a stoca tipul prompt-ului
+  let lastType = '';
 
   // Logica pentru înregistrare
   signupButton.addEventListener('click', async function (event) {
@@ -41,13 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Validăm parola
+    const password = passwordInput.value.trim();
+    if (password.length < 12) {
+      confirmationMessage.style.display = 'block';
+      confirmationMessage.style.color = 'red';
+      confirmationMessage.textContent = 'Parola trebuie să aibă minim 12 caractere.';
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: email }),
+        body: JSON.stringify({ email: email, password: password }),
       });
 
       const data = await response.json();
@@ -58,8 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         confirmationMessage.textContent = data.message || 'Bine ai venit! Înregistrare reușită.';
         confirmationMessage.style.color = 'green';
         emailInput.value = '';
+        passwordInput.value = '';
         interactiveSection.style.display = 'block';
-        logoutBtn.style.display = 'block'; // Arătăm butonul de logout după înregistrare
+        logoutBtn.style.display = 'block';
       } else {
         confirmationMessage.textContent = data.error || 'Eroare la înregistrare.';
         confirmationMessage.style.color = 'red';
@@ -83,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       signupForm.style.display = 'block';
       toggleLogin.textContent = 'Ai deja cont? Conectează-te';
       loginMessage.style.display = 'none';
-      logoutBtn.style.display = 'none'; // Ascundem butonul la întoarcere
+      logoutBtn.style.display = 'none';
     }
   });
 
@@ -101,13 +113,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Validăm parola
+    const password = loginPasswordInput.value.trim();
+    if (password.length < 12) {
+      loginMessage.style.display = 'block';
+      loginMessage.style.color = 'red';
+      loginMessage.textContent = 'Parola trebuie să aibă minim 12 caractere.';
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: email }),
+        body: JSON.stringify({ email: email, password: password }),
       });
 
       const data = await response.json();
@@ -118,8 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loginMessage.textContent = data.message || 'Conectare reușită!';
         loginMessage.style.color = 'green';
         loginEmailInput.value = '';
+        loginPasswordInput.value = '';
         interactiveSection.style.display = 'block';
-        logoutBtn.style.display = 'block'; // Arătăm butonul de logout după conectare
+        logoutBtn.style.display = 'block';
       } else {
         loginMessage.textContent = data.error || 'Eroare la conectare.';
         loginMessage.style.color = 'red';
@@ -137,15 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const response = await fetch('http://localhost:3000/logout', {
         method: 'GET',
-        credentials: 'include', // Trimite cookie-urile
+        credentials: 'include',
       });
       const data = await response.json();
       message.textContent = data.message || 'Eroare la deconectare';
       setTimeout(() => {
         message.textContent = '';
-        interactiveSection.style.display = 'none'; // Ascundem secțiunea interactivă
-        loginForm.style.display = 'block'; // Arătăm formularul de login
-        logoutBtn.style.display = 'none'; // Ascundem butonul de logout
+        interactiveSection.style.display = 'none';
+        loginForm.style.display = 'block';
+        logoutBtn.style.display = 'none';
       }, 2000);
     } catch (error) {
       message.textContent = `Eroare: ${error.message}`;
@@ -157,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
   async function generatePrompt(type) {
     const subject = promptSubject.value.trim();
 
-    // Validare pentru subiect
     if (subject && !/^[a-zA-Z0-9ăîâșțĂÎÂȘȚ\s]+$/.test(subject)) {
       message.textContent = 'Subiectul poate conține doar litere, cifre și spații.';
       setTimeout(() => { message.textContent = ''; }, 6000);
@@ -170,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     lastType = type;
-    // Dezactivăm butoanele și arătăm mesajul de loading
     generateIdeaBtn.disabled = true;
     generateDescriptionBtn.disabled = true;
     generateTitleBtn.disabled = true;
@@ -190,9 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Cookie': document.cookie, // Trimitem cookie-urile pentru sesiune
+          'Cookie': document.cookie,
         },
-        credentials: 'include', // Asigurăm că sesiunea e inclusă
+        credentials: 'include',
         body: JSON.stringify({ type, subject: subject || 'generic fitness' }),
         signal: controller.signal,
       });
@@ -232,7 +252,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Evenimente pentru butoane
   generateIdeaBtn.addEventListener('click', () => generatePrompt('idea'));
   generateDescriptionBtn.addEventListener('click', () => generatePrompt('description'));
   generateTitleBtn.addEventListener('click', () => generatePrompt('title'));
@@ -269,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
     promptSubject.value = '';
   });
 
-  // Logica pentru animarea navbar-ului
   let lastScrollTop = 0;
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', function () {
@@ -287,7 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lastScrollTop = scrollTop;
   });
 
-  // Logica pentru animarea elementelor
   const animateElements = document.querySelectorAll('.feature-item');
   const observerOptions = { threshold: 0.1 };
   const observer = new IntersectionObserver((entries, observer) => {
