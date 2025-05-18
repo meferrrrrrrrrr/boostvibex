@@ -46,36 +46,57 @@ db.serialize(() => {
 });
 */
 
-// Endpoint pentru înregistrare (fără SQLite)
+// Endpoint pentru înregistrare
 app.post('/signup', (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
   }
-  // Verificăm dacă email-ul e deja în sesiune (simplu, pentru testare)
-  if (req.session.users && req.session.users.includes(email)) {
+  if (!password) {
+    return res.status(400).json({ error: 'Parola este obligatorie' });
+  }
+  if (password.length < 12) {
+    return res.status(400).json({ error: 'Parola trebuie să aibă minim 12 caractere' });
+  }
+
+  // Verificăm dacă email-ul e deja în sesiune
+  if (req.session.users && req.session.users.some(user => user.email === email)) {
     return res.status(400).json({ error: 'Email-ul există deja' });
   }
+
   // Inițializăm array-ul users dacă nu există
   if (!req.session.users) {
     req.session.users = [];
   }
-  req.session.users.push(email);
-  req.session.user = { email }; // Setăm utilizatorul curent
+
+  // Salvăm email-ul și parola în sesiune
+  req.session.users.push({ email, password });
+  req.session.user = { email, password }; // Setăm utilizatorul curent
   res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
 });
 
-// Endpoint pentru conectare (fără SQLite)
+// Endpoint pentru conectare
 app.post('/login', (req, res) => {
-  const { email } = req.body;
+  const { email, password } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
   }
+  if (!password) {
+    return res.status(400).json({ error: 'Parola este obligatorie' });
+  }
+
   // Verificăm dacă email-ul e în sesiune
-  if (!req.session.users || !req.session.users.includes(email)) {
+  const user = req.session.users && req.session.users.find(user => user.email === email);
+  if (!user) {
     return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
   }
-  req.session.user = { email }; // Setăm utilizatorul curent
+
+  // Verificăm parola
+  if (user.password !== password) {
+    return res.status(400).json({ error: 'Parola este incorectă' });
+  }
+
+  req.session.user = { email, password }; // Setăm utilizatorul curent
   res.status(200).json({ message: 'Conectare reușită!' });
 });
 
