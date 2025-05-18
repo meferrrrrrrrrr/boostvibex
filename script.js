@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const signupButton = document.getElementById('signup-button');
   const confirmationMessage = document.getElementById('confirmationMessage');
   const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password'); // Adăugăm referința la parolă
+  const passwordInput = document.getElementById('password');
   const loginForm = document.getElementById('loginForm');
   const loginButton = document.getElementById('login-button');
   const loginMessage = document.getElementById('loginMessage');
   const toggleLogin = document.getElementById('toggleLogin');
   const loginEmailInput = document.getElementById('loginEmail');
-  const loginPasswordInput = document.getElementById('loginPassword'); // Adăugăm referința la parolă login
+  const loginPasswordInput = document.getElementById('loginPassword');
   const logoutBtn = document.getElementById('logout');
 
   // Elemente pentru generarea de conținut
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       confirmationMessage.style.display = 'block';
       confirmationMessage.style.color = 'red';
       confirmationMessage.textContent = 'Te rog introdu un email valid.';
+      setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
       return;
     }
 
@@ -49,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       confirmationMessage.style.display = 'block';
       confirmationMessage.style.color = 'red';
       confirmationMessage.textContent = 'Parola trebuie să aibă minim 12 caractere.';
+      setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
       return;
     }
 
@@ -72,15 +74,18 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordInput.value = '';
         interactiveSection.style.display = 'block';
         logoutBtn.style.display = 'block';
+        setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
       } else {
         confirmationMessage.textContent = data.error || 'Eroare la înregistrare.';
         confirmationMessage.style.color = 'red';
+        setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
       }
     } catch (error) {
       console.log("Eroare fetch:", error);
       confirmationMessage.style.display = 'block';
       confirmationMessage.style.color = 'red';
       confirmationMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
+      setTimeout(() => { confirmationMessage.style.display = 'none'; }, 3000);
     }
   });
 
@@ -110,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMessage.style.display = 'block';
       loginMessage.style.color = 'red';
       loginMessage.textContent = 'Te rog introdu un email valid.';
+      setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
       return;
     }
 
@@ -119,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMessage.style.display = 'block';
       loginMessage.style.color = 'red';
       loginMessage.textContent = 'Parola trebuie să aibă minim 12 caractere.';
+      setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
       return;
     }
 
@@ -142,15 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
         loginPasswordInput.value = '';
         interactiveSection.style.display = 'block';
         logoutBtn.style.display = 'block';
+        setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
       } else {
         loginMessage.textContent = data.error || 'Eroare la conectare.';
         loginMessage.style.color = 'red';
+        setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
       }
     } catch (error) {
       console.log("Eroare fetch:", error);
       loginMessage.style.display = 'block';
       loginMessage.style.color = 'red';
       loginMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
+      setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
     }
   });
 
