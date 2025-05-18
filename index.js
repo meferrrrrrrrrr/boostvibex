@@ -137,6 +137,16 @@ app.post('/api/openai', async (req, res) => {
   }
 });
 
+// Endpoint pentru logout
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: 'Eroare la deconectare' });
+    }
+    res.status(200).json({ message: 'Deconectare reușită!' });
+  });
+});
+
 // Rută explicită pentru a servi index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
