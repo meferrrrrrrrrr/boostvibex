@@ -1,5 +1,4 @@
 import express from 'express';
-import sqlite3 from 'sqlite3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
@@ -16,18 +15,19 @@ app.set('trust proxy', 1);
 
 // Configurare sesiuni
 app.use(session({
-  secret: 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6', // Cheia ta nouă
+  secret: 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6',
   resave: false,
   saveUninitialized: false,
   cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
-// Configurare pentru a servi fișiere statice (ex. index.html, style.css)
+// Configurare pentru a servi fișiere statice
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '.')));
 
-// Inițializăm baza de date SQLite
+// Comentăm SQLite temporar
+/*
 const db = new sqlite3.Database('users.db', (err) => {
   if (err) {
     console.error('Eroare la conectarea bazei de date:', err);
@@ -36,7 +36,6 @@ const db = new sqlite3.Database('users.db', (err) => {
   }
 });
 
-// Creăm tabela pentru utilizatori
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
@@ -45,54 +44,43 @@ db.serialize(() => {
     )
   `);
 });
+*/
 
-// Endpoint pentru înregistrare
+// Endpoint pentru înregistrare (fără SQLite)
 app.post('/signup', (req, res) => {
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
   }
-  db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
-    if (err) {
-      return res.status(500).json({ error: 'Eroare server' });
-    }
-    if (row) {
-      return res.status(400).json({ error: 'Email-ul există deja' });
-    }
-    db.run('INSERT INTO users (email) VALUES (?)', [email], function (err) {
-      if (err) {
-        return res.status(500).json({ error: 'Eroare la înregistrare' });
-      }
-      // Salvăm email-ul în sesiune
-      req.session.user = { email };
-      res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
-    });
-  });
+  // Verificăm dacă email-ul e deja în sesiune (simplu, pentru testare)
+  if (req.session.users && req.session.users.includes(email)) {
+    return res.status(400).json({ error: 'Email-ul există deja' });
+  }
+  // Inițializăm array-ul users dacă nu există
+  if (!req.session.users) {
+    req.session.users = [];
+  }
+  req.session.users.push(email);
+  req.session.user = { email }; // Setăm utilizatorul curent
+  res.status(200).json({ message: 'Bine ai venit! Înregistrare reușită.' });
 });
 
-// Endpoint pentru conectare
+// Endpoint pentru conectare (fără SQLite)
 app.post('/login', (req, res) => {
-  console.log('Sesiune:', req.session.user);
   const { email } = req.body;
   if (!email) {
     return res.status(400).json({ error: 'Email-ul este obligatoriu' });
   }
-  db.get('SELECT * FROM users WHERE email = ?', [email], (err, row) => {
-    if (err) {
-      return res.status(500).json({ error: 'Eroare server' });
-    }
-    if (!row) {
-      return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
-    }
-    // Salvăm email-ul în sesiune
-    req.session.user = { email };
-    res.status(200).json({ message: 'Conectare reușită!' });
-  });
+  // Verificăm dacă email-ul e în sesiune
+  if (!req.session.users || !req.session.users.includes(email)) {
+    return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
+  }
+  req.session.user = { email }; // Setăm utilizatorul curent
+  res.status(200).json({ message: 'Conectare reușită!' });
 });
 
 // Endpoint pentru OpenAI (doar pentru utilizatori conectați)
 app.post('/api/openai', async (req, res) => {
-  // Verificăm dacă utilizatorul e conectat
   if (!req.session.user) {
     return res.status(401).json({ error: 'Trebuie să fii conectat pentru a genera conținut.' });
   }
@@ -102,7 +90,6 @@ app.post('/api/openai', async (req, res) => {
     return res.status(400).json({ error: 'Tipul de conținut este obligatoriu.' });
   }
 
-  // Construim prompt-ul
   let prompt;
   switch (type) {
     case 'idea':
