@@ -24,14 +24,16 @@
         { "type": "host", "value": "boostvibex.com" }
       ],
       "src": "/(.*)",
-      "dest": "/public/under-construction.html"
+      "dest": "/public/under-construction.html",
+      "continue": false
     },
     {
       "has": [
         { "type": "host", "value": "www.boostvibex.com" }
       ],
       "src": "/(.*)",
-      "dest": "/public/under-construction.html"
+      "dest": "/public/under-construction.html",
+      "continue": false
     },
     {
       "src": "/api/(.*)",
