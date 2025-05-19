@@ -1,42 +1,57 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
     {
       "has": [
         { "type": "host", "value": "boostvibex.com" }
       ],
-      "source": "/(.*)",
-      "destination": "/under-construction.html"
+      "src": "/(.*)",
+      "dest": "/under-construction.html"
     },
     {
       "has": [
         { "type": "host", "value": "www.boostvibex.com" }
       ],
-      "source": "/(.*)",
-      "destination": "/under-construction.html"
+      "src": "/(.*)",
+      "dest": "/under-construction.html"
     },
     {
-      "source": "/",
-      "destination": "/index.html"
+      "src": "/",
+      "dest": "/index.html"
     },
     {
-      "source": "/privacy",
-      "destination": "/public/privacy.html"
+      "src": "/privacy",
+      "dest": "/public/privacy.html"
     },
     {
-      "source": "/terms",
-      "destination": "/public/terms.html"
+      "src": "/terms",
+      "dest": "/public/terms.html"
     },
     {
-      "source": "/contact",
-      "destination": "/public/contact.html"
+      "src": "/contact",
+      "dest": "/public/contact.html"
     },
     {
-      "source": "/under-construction",
-      "destination": "/public/under-construction.html"
+      "src": "/under-construction",
+      "dest": "/public/under-construction.html"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
