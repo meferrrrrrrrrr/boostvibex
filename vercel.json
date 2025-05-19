@@ -15,39 +15,28 @@
       "destination": "/under-construction.html"
     },
     {
-      "has": [
-        { "type": "host", "value": "boostvibex.vercel.app" }
-      ],
       "source": "/",
       "destination": "/index.html"
     },
     {
-      "has": [
-        { "type": "host", "value": "boostvibex.vercel.app" }
-      ],
       "source": "/privacy",
-      "destination": "/privacy.html"
+      "destination": "/public/privacy.html"
     },
     {
-      "has": [
-        { "type": "host", "value": "boostvibex.vercel.app" }
-      ],
       "source": "/terms",
-      "destination": "/terms.html"
+      "destination": "/public/terms.html"
     },
     {
-      "has": [
-        { "type": "host", "value": "boostvibex.vercel.app" }
-      ],
       "source": "/contact",
-      "destination": "/contact.html"
+      "destination": "/public/contact.html"
     },
     {
-      "has": [
-        { "type": "host", "value": "boostvibex.vercel.app" }
-      ],
       "source": "/under-construction",
-      "destination": "/under-construction.html"
+      "destination": "/public/under-construction.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
