@@ -126,6 +126,35 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Endpoint pentru resetare parolă
+app.post('/forgot-password', async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).json({ error: 'Email-ul este obligatoriu' });
+  }
+
+  try {
+    // Verificăm dacă email-ul există
+    const user = await dbGet('SELECT email FROM users WHERE email = ?', [email]);
+    if (!user) {
+      return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
+    }
+
+    // Generăm un cod de resetare (6 cifre random)
+    const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Stocăm codul în sesiune legat de email (simulare temporară)
+    req.session.resetCodes = req.session.resetCodes || {};
+    req.session.resetCodes[email] = resetCode;
+
+    // Mesaj de succes (în realitate, am trimite codul prin email)
+    res.status(200).json({ message: 'Un cod de resetare a fost generat. Verifică-ți email-ul (simulat). Codul este: ' + resetCode });
+  } catch (error) {
+    console.error('Eroare la resetare parolă:', error);
+    res.status(500).json({ error: 'Eroare la server' });
+  }
+});
+
 // Endpoint pentru OpenAI (doar pentru utilizatori conectați)
 app.post('/api/openai', async (req, res) => {
   if (!req.session.user) {
