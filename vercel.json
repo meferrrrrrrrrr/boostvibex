@@ -1,75 +1,22 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "style.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "images/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
+  "rewrites": [
     {
       "has": [
         { "type": "host", "value": "boostvibex.com" }
       ],
-      "src": "/(.*)",
-      "dest": "/public/under-construction.html",
-      "continue": false
+      "source": "/(.*)",
+      "destination": "/public/under-construction.html"
     },
     {
       "has": [
         { "type": "host", "value": "www.boostvibex.com" }
       ],
-      "src": "/(.*)",
-      "dest": "/public/under-construction.html",
-      "continue": false
+      "source": "/(.*)",
+      "destination": "/public/under-construction.html"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/index.js"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
-    },
-    {
-      "src": "/",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/privacy",
-      "dest": "/public/privacy.html"
-    },
-    {
-      "src": "/terms",
-      "dest": "/public/terms.html"
-    },
-    {
-      "src": "/contact",
-      "dest": "/public/contact.html"
-    },
-    {
-      "src": "/under-construction",
-      "dest": "/public/under-construction.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/public/under-construction.html"
     }
   ]
 }
