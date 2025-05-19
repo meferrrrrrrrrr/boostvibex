@@ -101,8 +101,16 @@
                 <label for="loginPassword">Parola ta:</label>
                 <input type="password" id="loginPassword" name="loginPassword" placeholder="Introdu parola" required>
                 <button id="login-button">Conectare</button>
+                <button id="forgot-password-button" class="toggle-button">Am uitat parola?</button>
             </div>
             <div id="loginMessage" style="display: none;"></div>
+            <div id="forgotPasswordForm" class="signup-form-content" style="display: none;">
+                <label for="forgotEmail">Email-ul tău:</label>
+                <input type="email" id="forgotEmail" name="forgotEmail" placeholder="exemplu@domain.com" required>
+                <button id="reset-password-button">Trimite cod de resetare</button>
+                <button id="back-to-login" class="toggle-button">Înapoi la conectare</button>
+            </div>
+            <div id="forgotPasswordMessage" style="display: none;"></div>
             <button id="toggleLogin" class="toggle-button">Ai deja cont? Conectează-te</button>
             <button id="logout" style="display: none;">Deconectare</button>
         </div>

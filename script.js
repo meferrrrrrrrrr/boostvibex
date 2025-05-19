@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginEmailInput = document.getElementById('loginEmail');
   const loginPasswordInput = document.getElementById('loginPassword');
   const logoutBtn = document.getElementById('logout');
+  const forgotPasswordButton = document.getElementById('forgot-password-button');
+  const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+  const resetPasswordButton = document.getElementById('reset-password-button');
+  const backToLoginButton = document.getElementById('back-to-login');
+  const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
+  const forgotEmailInput = document.getElementById('forgotEmail');
 
   // Elemente pentru generarea de conținut
   const promptSubject = document.getElementById('prompt-subject');
@@ -100,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       signupForm.style.display = 'block';
       toggleLogin.textContent = 'Ai deja cont? Conectează-te';
       loginMessage.style.display = 'none';
+      forgotPasswordForm.style.display = 'none';
       logoutBtn.style.display = 'none';
     }
   });
@@ -161,6 +168,65 @@ document.addEventListener('DOMContentLoaded', () => {
       loginMessage.style.color = 'red';
       loginMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
       setTimeout(() => { loginMessage.style.display = 'none'; }, 3000);
+    }
+  });
+
+  // Logica pentru resetare parolă
+  forgotPasswordButton.addEventListener('click', () => {
+    loginForm.style.display = 'none';
+    forgotPasswordForm.style.display = 'block';
+    forgotPasswordMessage.style.display = 'none';
+  });
+
+  backToLoginButton.addEventListener('click', () => {
+    forgotPasswordForm.style.display = 'none';
+    loginForm.style.display = 'block';
+    forgotPasswordMessage.style.display = 'none';
+  });
+
+  resetPasswordButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    // Validăm email-ul
+    const email = forgotEmailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      forgotPasswordMessage.style.display = 'block';
+      forgotPasswordMessage.style.color = 'red';
+      forgotPasswordMessage.textContent = 'Te rog introdu un email valid.';
+      setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 3000);
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+      });
+
+      const data = await response.json();
+      console.log("Răspuns API:", data);
+      forgotPasswordMessage.style.display = 'block';
+
+      if (response.ok) {
+        forgotPasswordMessage.textContent = data.message || 'Cod de resetare trimis (simulat).';
+        forgotPasswordMessage.style.color = 'green';
+        forgotEmailInput.value = '';
+        setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 5000);
+      } else {
+        forgotPasswordMessage.textContent = data.error || 'Eroare la resetare.';
+        forgotPasswordMessage.style.color = 'red';
+        setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 3000);
+      }
+    } catch (error) {
+      console.log("Eroare fetch:", error);
+      forgotPasswordMessage.style.display = 'block';
+      forgotPasswordMessage.style.color = 'red';
+      forgotPasswordMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
+      setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 3000);
     }
   });
 
