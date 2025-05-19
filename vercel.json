@@ -4,6 +4,18 @@
     {
       "src": "index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "style.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "images/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -12,14 +24,26 @@
         { "type": "host", "value": "boostvibex.com" }
       ],
       "src": "/(.*)",
-      "dest": "/under-construction.html"
+      "dest": "/public/under-construction.html"
     },
     {
       "has": [
         { "type": "host", "value": "www.boostvibex.com" }
       ],
       "src": "/(.*)",
-      "dest": "/under-construction.html"
+      "dest": "/public/under-construction.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
     },
     {
       "src": "/",
@@ -40,14 +64,6 @@
     {
       "src": "/under-construction",
       "dest": "/public/under-construction.html"
-    },
-    {
-      "src": "/style.css",
-      "dest": "/style.css"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "/images/$1"
     },
     {
       "src": "/(.*)",
