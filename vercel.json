@@ -1,5 +1,17 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/under-construction.html" }
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.com" },
+        { "type": "host", "value": "www.boostvibex.com" }
+      ],
+      "source": "/(.*)",
+      "destination": "/under-construction.html"
+    },
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/under-construction", "destination": "/under-construction.html" }
   ]
 }

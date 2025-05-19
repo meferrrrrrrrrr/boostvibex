@@ -23,10 +23,17 @@ app.use(session({
   cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
-// Configurare pentru a servi fișiere statice
+// Configurare pentru a servi fișiere statice din rădăcină (pentru style.css, images)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '.')));
+app.use(express.static(__dirname)); // Servește fișiere din rădăcină (style.css, images)
+app.use(express.static(path.join(__dirname, 'public'))); // Servește fișiere din public (privacy.html, etc.)
+
+// Adaugă rute explicite pentru fișiere statice
+app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')));
+app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')));
+app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, 'public', 'contact.html')));
+app.get('/under-construction', (req, res) => res.sendFile(path.join(__dirname, 'public', 'under-construction.html')));
 
 // Conectare la SQLite
 const db = new sqlite3.Database('users.db', (err) => {
