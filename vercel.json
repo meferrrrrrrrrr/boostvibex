@@ -2,16 +2,52 @@
   "rewrites": [
     {
       "has": [
-        { "type": "host", "value": "boostvibex.com" },
+        { "type": "host", "value": "boostvibex.com" }
+      ],
+      "source": "/(.*)",
+      "destination": "/under-construction.html"
+    },
+    {
+      "has": [
         { "type": "host", "value": "www.boostvibex.com" }
       ],
       "source": "/(.*)",
       "destination": "/under-construction.html"
     },
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/under-construction", "destination": "/under-construction.html" }
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.vercel.app" }
+      ],
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.vercel.app" }
+      ],
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.vercel.app" }
+      ],
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.vercel.app" }
+      ],
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "has": [
+        { "type": "host", "value": "boostvibex.vercel.app" }
+      ],
+      "source": "/under-construction",
+      "destination": "/under-construction.html"
+    }
   ]
 }
