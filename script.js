@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToLoginButton = document.getElementById('back-to-login');
   const forgotPasswordMessage = document.getElementById('forgotPasswordMessage');
   const forgotEmailInput = document.getElementById('forgotEmail');
+  const resetPasswordForm = document.getElementById('resetPasswordForm');
+  const submitResetPasswordButton = document.getElementById('submit-reset-password');
+  const backToForgotPasswordButton = document.getElementById('back-to-forgot-password');
+  const resetPasswordMessage = document.getElementById('resetPasswordMessage');
+  const resetCodeInput = document.getElementById('resetCode');
+  const newPasswordInput = document.getElementById('newPassword');
 
   // Elemente pentru generarea de conținut
   const promptSubject = document.getElementById('prompt-subject');
@@ -34,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const interactiveSection = document.getElementById('interactive');
 
   let lastType = '';
+  let resetEmail = ''; // Stocăm email-ul pentru resetare
 
   // Logica pentru înregistrare
   signupButton.addEventListener('click', async function (event) {
@@ -107,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleLogin.textContent = 'Ai deja cont? Conectează-te';
       loginMessage.style.display = 'none';
       forgotPasswordForm.style.display = 'none';
+      resetPasswordForm.style.display = 'none';
       logoutBtn.style.display = 'none';
     }
   });
@@ -171,17 +179,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Logica pentru resetare parolă
+  // Logica pentru resetare parolă (cerere cod)
   forgotPasswordButton.addEventListener('click', () => {
     loginForm.style.display = 'none';
     forgotPasswordForm.style.display = 'block';
     forgotPasswordMessage.style.display = 'none';
+    resetPasswordForm.style.display = 'none';
   });
 
   backToLoginButton.addEventListener('click', () => {
     forgotPasswordForm.style.display = 'none';
     loginForm.style.display = 'block';
     forgotPasswordMessage.style.display = 'none';
+    resetPasswordForm.style.display = 'none';
   });
 
   resetPasswordButton.addEventListener('click', async (event) => {
@@ -212,10 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
       forgotPasswordMessage.style.display = 'block';
 
       if (response.ok) {
+        resetEmail = email; // Stocăm email-ul pentru pasul următor
         forgotPasswordMessage.textContent = data.message || 'Cod de resetare trimis (simulat).';
         forgotPasswordMessage.style.color = 'green';
         forgotEmailInput.value = '';
-        setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 5000);
+        setTimeout(() => {
+          forgotPasswordMessage.style.display = 'none';
+          forgotPasswordForm.style.display = 'none';
+          resetPasswordForm.style.display = 'block';
+        }, 3000);
       } else {
         forgotPasswordMessage.textContent = data.error || 'Eroare la resetare.';
         forgotPasswordMessage.style.color = 'red';
@@ -227,6 +242,74 @@ document.addEventListener('DOMContentLoaded', () => {
       forgotPasswordMessage.style.color = 'red';
       forgotPasswordMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
       setTimeout(() => { forgotPasswordMessage.style.display = 'none'; }, 3000);
+    }
+  });
+
+  // Logica pentru resetare parolă (verificare cod și actualizare)
+  backToForgotPasswordButton.addEventListener('click', () => {
+    resetPasswordForm.style.display = 'none';
+    forgotPasswordForm.style.display = 'block';
+    resetPasswordMessage.style.display = 'none';
+  });
+
+  submitResetPasswordButton.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const resetCode = resetCodeInput.value.trim();
+    const newPassword = newPasswordInput.value.trim();
+
+    // Validăm codul
+    if (!resetCode || resetCode.length !== 6 || !/^\d+$/.test(resetCode)) {
+      resetPasswordMessage.style.display = 'block';
+      resetPasswordMessage.style.color = 'red';
+      resetPasswordMessage.textContent = 'Codul de resetare trebuie să fie un număr de 6 cifre.';
+      setTimeout(() => { resetPasswordMessage.style.display = 'none'; }, 3000);
+      return;
+    }
+
+    // Validăm parola
+    if (newPassword.length < 12) {
+      resetPasswordMessage.style.display = 'block';
+      resetPasswordMessage.style.color = 'red';
+      resetPasswordMessage.textContent = 'Parola nouă trebuie să aibă minim 12 caractere.';
+      setTimeout(() => { resetPasswordMessage.style.display = 'none'; }, 3000);
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/reset-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: resetEmail, resetCode: resetCode, newPassword: newPassword }),
+      });
+
+      const data = await response.json();
+      console.log("Răspuns API:", data);
+      resetPasswordMessage.style.display = 'block';
+
+      if (response.ok) {
+        resetPasswordMessage.textContent = data.message || 'Parola a fost resetată cu succes!';
+        resetPasswordMessage.style.color = 'green';
+        resetCodeInput.value = '';
+        newPasswordInput.value = '';
+        setTimeout(() => {
+          resetPasswordMessage.style.display = 'none';
+          resetPasswordForm.style.display = 'none';
+          loginForm.style.display = 'block';
+        }, 3000);
+      } else {
+        resetPasswordMessage.textContent = data.error || 'Eroare la resetare.';
+        resetPasswordMessage.style.color = 'red';
+        setTimeout(() => { resetPasswordMessage.style.display = 'none'; }, 3000);
+      }
+    } catch (error) {
+      console.log("Eroare fetch:", error);
+      resetPasswordMessage.style.display = 'block';
+      resetPasswordMessage.style.color = 'red';
+      resetPasswordMessage.textContent = `Eroare: ${error.message || 'Nu s-a putut conecta la server.'}`;
+      setTimeout(() => { resetPasswordMessage.style.display = 'none'; }, 3000);
     }
   });
 

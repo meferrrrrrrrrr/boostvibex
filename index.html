@@ -111,6 +111,15 @@
                 <button id="back-to-login" class="toggle-button">Înapoi la conectare</button>
             </div>
             <div id="forgotPasswordMessage" style="display: none;"></div>
+            <div id="resetPasswordForm" class="signup-form-content" style="display: none;">
+                <label for="resetCode">Codul de resetare:</label>
+                <input type="text" id="resetCode" name="resetCode" placeholder="Introdu codul primit" required>
+                <label for="newPassword">Parola nouă:</label>
+                <input type="password" id="newPassword" name="newPassword" placeholder="Minim 12 caractere" required>
+                <button id="submit-reset-password">Resetează parola</button>
+                <button id="back-to-forgot-password" class="toggle-button">Înapoi</button>
+            </div>
+            <div id="resetPasswordMessage" style="display: none;"></div>
             <button id="toggleLogin" class="toggle-button">Ai deja cont? Conectează-te</button>
             <button id="logout" style="display: none;">Deconectare</button>
         </div>

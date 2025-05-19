@@ -126,7 +126,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Endpoint pentru resetare parolă
+// Endpoint pentru resetare parolă (cerere cod)
 app.post('/forgot-password', async (req, res) => {
   const { email } = req.body;
   if (!email) {
@@ -149,6 +149,46 @@ app.post('/forgot-password', async (req, res) => {
 
     // Mesaj de succes (în realitate, am trimite codul prin email)
     res.status(200).json({ message: 'Un cod de resetare a fost generat. Verifică-ți email-ul (simulat). Codul este: ' + resetCode });
+  } catch (error) {
+    console.error('Eroare la resetare parolă:', error);
+    res.status(500).json({ error: 'Eroare la server' });
+  }
+});
+
+// Endpoint pentru resetare parolă (verificare cod și actualizare)
+app.post('/reset-password', async (req, res) => {
+  const { email, resetCode, newPassword } = req.body;
+  if (!email || !resetCode || !newPassword) {
+    return res.status(400).json({ error: 'Toate câmpurile (email, cod de resetare, parolă nouă) sunt obligatorii' });
+  }
+  if (newPassword.length < 12) {
+    return res.status(400).json({ error: 'Parola nouă trebuie să aibă minim 12 caractere' });
+  }
+
+  try {
+    // Verificăm dacă email-ul există
+    const user = await dbGet('SELECT email FROM users WHERE email = ?', [email]);
+    if (!user) {
+      return res.status(400).json({ error: 'Email-ul nu este înregistrat' });
+    }
+
+    // Verificăm dacă există un cod de resetare valid în sesiune
+    req.session.resetCodes = req.session.resetCodes || {};
+    const storedCode = req.session.resetCodes[email];
+    if (!storedCode || storedCode !== resetCode) {
+      return res.status(400).json({ error: 'Codul de resetare este invalid sau a expirat' });
+    }
+
+    // Criptăm noua parolă
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Actualizăm parola în baza de date
+    await dbRun('UPDATE users SET password = ? WHERE email = ?', [hashedPassword, email]);
+
+    // Ștergem codul de resetare din sesiune după utilizare
+    delete req.session.resetCodes[email];
+
+    res.status(200).json({ message: 'Parola a fost resetată cu succes!' });
   } catch (error) {
     console.error('Eroare la resetare parolă:', error);
     res.status(500).json({ error: 'Eroare la server' });
